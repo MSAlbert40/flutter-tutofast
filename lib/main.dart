@@ -1,12 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tutofast/constants/app_colors.dart';
+import 'package:flutter_tutofast/constants/app_fonts.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 
 void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      
-    );
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: GetMaterialApp(
+        title: 'TutoFast',
+        themeMode: ThemeMode.system,
+        theme: ThemeData(
+          fontFamily: AppFonts.centuryGothic,
+          primaryColor: AppColors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+          scaffoldBackgroundColor: AppColors.gray,
+          appBarTheme: Theme.of(context).appBarTheme.copyWith(
+            color: AppColors.white,
+            iconTheme: Theme.of(context).iconTheme.copyWith(
+              color: AppColors.dark, 
+              size: 10
+            ),
+            textTheme: Theme.of(context).textTheme.copyWith(
+              headline6: Theme.of(context).textTheme.bodyText2.copyWith(
+                color: AppColors.dark,
+                fontSize: 20,
+                fontWeight: FontWeight.bold
+              )
+            )
+          )
+        )
+      )
+    )
   }
 }
