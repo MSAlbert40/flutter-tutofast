@@ -7,6 +7,7 @@ class MainButton extends StatelessWidget {
   final Color color;
   final Widget child;
   final TextStyle textStyle;
+  final Alignment alignment;
   final EdgeInsets padding;
   final Function onPressed;
   final ShapeBorder shapeBorder;
@@ -17,6 +18,7 @@ class MainButton extends StatelessWidget {
     this.height,
     this.color,
     this.textStyle,
+    this.alignment,
     this.padding,
     this.onPressed,
     this.shapeBorder,
