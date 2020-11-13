@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tutofast/constants/app_colors.dart';
 import 'package:flutter_tutofast/constants/app_fonts.dart';
 import 'package:flutter_tutofast/screens/loginScreen/loginForm.dart';
+import 'package:flutter_tutofast/screens/registerScreen/registerScreen.dart';
 import 'package:flutter_tutofast/widgets/buttons/microButton.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -140,6 +141,11 @@ class LoginScreen extends StatelessWidget {
                                   topLeft: Radius.circular(8),
                                   topRight: Radius.circular(8)
                                 ),
+                                onPressed: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => RegisterScreen()
+                                  ));
+                                },
                                 child: AutoSizeText(
                                   'Register',
                                   maxLines: 1,
