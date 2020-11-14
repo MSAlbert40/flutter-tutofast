@@ -35,11 +35,13 @@ class LoginFormBloc extends FormBloc<String, String> {
       Dio dio = new Dio();
       var request = {'username': username.value, 'password': password.value};
 
-      final _loginResult = await dio.post(
-          'https://tutofast-api.herokuapp.com/api/auth/signin',
-          options: Options(
-              headers: {HttpHeaders.contentTypeHeader: 'application/json'}),
-          data: jsonEncode(request));
+       final _loginResult = await dio.post(
+        'https://tutofast-api.herokuapp.com/api/auth/signin',
+        options: Options(headers: {
+          HttpHeaders.contentTypeHeader: 'application/json',
+        }),
+        data: jsonEncode(request)
+      );
 
       final _response = LoginResultDTO.fromJson(_loginResult.data);
       Directory directory = await getApplicationDocumentsDirectory();
@@ -47,6 +49,8 @@ class LoginFormBloc extends FormBloc<String, String> {
       await Hive.init(directory.path);
       var _box = await Hive.openBox('session');
       _box.put('username', _response.username);
+      print('*** user name:');
+      print(_response.username);
 
       final _mainColor = _response.username == 'jesus.student'
           ? AppColors.green
@@ -57,6 +61,7 @@ class LoginFormBloc extends FormBloc<String, String> {
       AppLoadingDialog.hide();
     } catch (e) {
       print(e);
+      AppLoadingDialog.hide();
     }
   }
 }
