@@ -183,7 +183,7 @@ class RegisterScreen extends StatelessWidget {
                         Container(
                           height: ((screenHeight / 1.304) - 50.0) / 1.125,
                           // color: AppColors.blue
-                          child: Column(children: [RegisterDataForm()])
+                          child: Column(children: [RegisterForm()])
                         )
                       ])
                     )
