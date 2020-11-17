@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tutofast/constants/app_colors.dart';
 import 'package:flutter_tutofast/constants/app_fonts.dart';
 import 'package:flutter_tutofast/screens/loginScreen/loginScreen.dart';
+import 'package:flutter_tutofast/screens/tabs/screen.dart';
+import 'package:flutter_tutofast/screens/tabs/screen_bindings.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+
+import 'constants/app_routes.dart';
 
 void main() => runApp(new MyApp());
 
@@ -15,7 +19,6 @@ class MyApp extends StatelessWidget {
       },
       child: GetMaterialApp(
         title: 'TutoFast',
-        home: const LoginScreen(),
         themeMode: ThemeMode.system,
         theme: ThemeData(
           fontFamily: AppFonts.centuryGothic,
@@ -36,7 +39,20 @@ class MyApp extends StatelessWidget {
               )
             )
           )
-        )
+        ),
+        home: const LoginScreen(),
+        onGenerateRoute: (settings) {
+          switch (settings.name) {
+            case AppRoutes.tabs:
+              return GetPageRoute(
+                  binding: TabsScreenBindings(),
+                  settings: settings,
+                  page: () => const TabsScreen());
+            default:
+              return GetPageRoute(
+                settings: settings, page: () => const LoginScreen());
+          }
+        },
       )
     );
   }

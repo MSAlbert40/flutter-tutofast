@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter_tutofast/constants/app_routes.dart';
 import 'package:flutter_tutofast/widgets/appLoadingDialog.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
@@ -35,15 +36,17 @@ class LoginFormBloc extends FormBloc<String, String> {
       Dio dio = new Dio();
       var request = {'username': username.value, 'password': password.value};
 
-       final _loginResult = await dio.post(
+      final _loginResult = await dio.post(
         'https://tutofast-api.herokuapp.com/api/auth/signin',
         options: Options(headers: {
           HttpHeaders.contentTypeHeader: 'application/json',
         }),
         data: jsonEncode(request)
       );
-
       final _response = LoginResultDTO.fromJson(_loginResult.data);
+      print('*****************');
+      print(_response);
+
       Directory directory = await getApplicationDocumentsDirectory();
       // ignore: await_only_futures
       await Hive.init(directory.path);
@@ -58,6 +61,7 @@ class LoginFormBloc extends FormBloc<String, String> {
       ThemeData _theme = ThemeData(primaryColor: _mainColor);
       Get.changeTheme(_theme);
 
+      Get.offAllNamed(AppRoutes.tabs);
       AppLoadingDialog.hide();
     } catch (e) {
       print(e);
