@@ -166,12 +166,12 @@ class RegisterScreen extends StatelessWidget {
                               Container(
                                 height: (((screenHeight / 1.304) - 50.0) / 9) / 2,
                                 alignment: Alignment.center,
-                                margin: EdgeInsets.symmetric(horizontal: 20.0),
+                                margin: EdgeInsets.symmetric(horizontal: 15.0),
                                 child: AutoSizeText(
                                   'Enter the data in the established fields and select a category.',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                    fontSize: 15.0,
+                                    fontSize: 16.0,
                                     letterSpacing: -0.5,
                                     height: 1
                                   )
@@ -360,12 +360,12 @@ class RegisterDataScreen extends StatelessWidget {
                               Container(
                                 height: (((screenHeight / 1.304) - 50.0) / 9) / 2,
                                 alignment: Alignment.center,
-                                margin: EdgeInsets.symmetric(horizontal: 20.0),
+                                margin: EdgeInsets.symmetric(horizontal: 15.0),
                                 child: AutoSizeText(
                                   'Enter your personal data in the established fields, for your registration.',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                    fontSize: 15.0,
+                                    fontSize: 16.0,
                                     letterSpacing: -0.5,
                                     height: 1
                                   )

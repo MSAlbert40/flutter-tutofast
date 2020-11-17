@@ -4,6 +4,7 @@ import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:flutter_tutofast/constants/app_colors.dart';
 import 'package:flutter_tutofast/screens/registerScreen/registerFormBloc.dart';
 import 'package:flutter_tutofast/screens/registerScreen/registerScreen.dart';
+import 'package:flutter_tutofast/screens/subcriptionScreen/subcriptionScreen.dart';
 import 'package:flutter_tutofast/widgets/buttons/mainButton.dart';
 import 'package:flutter_tutofast/widgets/forms/textInput.dart';
 
@@ -160,6 +161,9 @@ class RegisterDataForm extends StatelessWidget {
                       color: AppColors.blue,
                       onPressed: () {
                         context.bloc<RegisterFormBloc>().submit();
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => SubcriptionScreen()
+                        ));
                       }
                     )
                   )

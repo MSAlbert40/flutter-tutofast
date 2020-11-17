@@ -198,7 +198,7 @@ class LoginScreen extends StatelessWidget {
                                       child: AutoSizeText(
                                         'Dont have an account?',
                                         maxLines: 1,
-                                        style: TextStyle(letterSpacing: -0.5, fontSize: 15),
+                                        style: TextStyle(letterSpacing: -0.5, fontSize: 15.0),
                                       )
                                     ),
                                     Container(
@@ -208,7 +208,7 @@ class LoginScreen extends StatelessWidget {
                                       child: AutoSizeText(
                                         ' Create your account,',
                                         maxLines: 1,
-                                        style: TextStyle(letterSpacing: -0.5, fontSize: 17, color: AppColors.cyan, fontWeight: FontWeight.bold)
+                                        style: TextStyle(letterSpacing: -0.5, fontSize: 16.5, color: AppColors.cyan, fontWeight: FontWeight.bold)
                                       )
                                     )
                                   ]
@@ -220,7 +220,7 @@ class LoginScreen extends StatelessWidget {
                                   child: AutoSizeText(
                                     'it take less than a minute',
                                     maxLines: 1,
-                                    style: TextStyle(letterSpacing: -0.5, fontSize: 15, height: 1)
+                                    style: TextStyle(letterSpacing: -0.5, fontSize: 15.0, height: 1)
                                   )
                                 )
                               ]
