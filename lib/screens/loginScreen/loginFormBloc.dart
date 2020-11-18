@@ -44,18 +44,14 @@ class LoginFormBloc extends FormBloc<String, String> {
         data: jsonEncode(request)
       );
       final _response = LoginResultDTO.fromJson(_loginResult.data);
-      print('*****************');
-      print(_response);
 
       Directory directory = await getApplicationDocumentsDirectory();
       // ignore: await_only_futures
       await Hive.init(directory.path);
       var _box = await Hive.openBox('session');
-      _box.put('username', _response.username);
-      print('*** user name:');
-      print(_response.username);
+      _box.put('role', _response.roles);
 
-      final _mainColor = _response.username == 'jesus.student'
+      final _mainColor = _response.roles == 'ROLE_STUDENT'
           ? AppColors.green
           : AppColors.blue;
       ThemeData _theme = ThemeData(primaryColor: _mainColor);

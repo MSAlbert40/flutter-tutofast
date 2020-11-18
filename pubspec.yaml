@@ -37,8 +37,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/images/backgrounds/
-    - assets/images/icons/
+    - assets/images/
 
   fonts:
     - family: AfterNight

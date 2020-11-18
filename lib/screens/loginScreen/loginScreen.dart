@@ -2,9 +2,11 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tutofast/constants/app_colors.dart';
 import 'package:flutter_tutofast/constants/app_fonts.dart';
+import 'package:flutter_tutofast/constants/app_routes.dart';
 import 'package:flutter_tutofast/screens/loginScreen/loginForm.dart';
 import 'package:flutter_tutofast/screens/registerScreen/registerScreen.dart';
 import 'package:flutter_tutofast/widgets/buttons/microButton.dart';
+import 'package:get/get.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key key}) : super(key: key);
@@ -142,9 +144,7 @@ class LoginScreen extends StatelessWidget {
                                   topRight: Radius.circular(8)
                                 ),
                                 onPressed: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => RegisterScreen()
-                                  ));
+                                  Get.toNamed(AppRoutes.register);
                                 },
                                 child: AutoSizeText(
                                   'Register',

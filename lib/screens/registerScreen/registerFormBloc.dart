@@ -1,13 +1,22 @@
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:dio/dio.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
+import 'package:flutter_tutofast/constants/app_routes.dart';
 import 'package:flutter_tutofast/utils/formValidations.dart';
+import 'package:flutter_tutofast/widgets/appLoadingDialog.dart';
+import 'package:get/get.dart';
 
 class RegisterFormBloc extends FormBloc<String, String> {
-  // ignore: close_sinks
+  final role = TextFieldBloc(
+    name: 'role',
+    initialValue: 'ROLE_STUDENT',
+    validators: [isRequired('You need to enter an role')]);
   final username = TextFieldBloc(
       name: 'username',
       initialValue: '',
       validators: [isRequired('You need to enter an username')]);
-  // ignore: close_sinks
   final email = TextFieldBloc(
       name: 'email',
       initialValue: '',
@@ -48,12 +57,56 @@ class RegisterFormBloc extends FormBloc<String, String> {
       initialValue: '',
       validators: [isRequired('You need to enter your address')]);
 
-    RegisterFormBloc() {
-    addFieldBlocs(fieldBlocs: [username, email, password, name, lastName, dni, phone, birthDate, address]);
+  RegisterFormBloc() {
+    addFieldBlocs(fieldBlocs: [
+      role,
+      username,
+      email,
+      password,
+      name,
+      lastName,
+      dni,
+      phone,
+      birthDate,
+      address
+    ]);
   }
 
   @override
-  void onSubmitting() {
-    // TODO: implement onSubmitting
+  void onSubmitting() async {
+    try {
+      AppLoadingDialog.show();
+      Dio dio = new Dio();
+      var request = {
+        'username': username.value,
+        'password': password.value,
+        'email': email.value,
+        'name': name.value,
+        'lastName': lastName.value,
+        'dni': dni.value,
+        'phone': phone.value,
+        'birthday': birthDate.value,
+        'address': address.value,
+        'role': [role.value]
+      };
+      print('request');
+      print(request);
+
+      final _signupResult = await dio.post(
+        'https://tutofast-api.herokuapp.com/api/auth/signup',
+        options: Options(headers: {
+          HttpHeaders.contentTypeHeader: 'application/json',
+        }),
+        data: jsonEncode(request)
+      );
+      print('_signupResult');
+      print(_signupResult);
+      AppLoadingDialog.hide();
+      print('hide');
+      Get.toNamed(AppRoutes.login);
+    } catch(e) {
+      print(e);
+      AppLoadingDialog.hide();
+    }
   }
 }
