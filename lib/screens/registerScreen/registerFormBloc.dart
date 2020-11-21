@@ -9,14 +9,17 @@ import 'package:flutter_tutofast/widgets/appLoadingDialog.dart';
 import 'package:get/get.dart';
 
 class RegisterFormBloc extends FormBloc<String, String> {
+  // ignore: close_sinks
   final role = TextFieldBloc(
     name: 'role',
     initialValue: 'ROLE_STUDENT',
-    validators: [isRequired('You need to enter an role')]);
+    validators: [isRequired('You need to select an role')]);
+  // ignore: close_sinks
   final username = TextFieldBloc(
       name: 'username',
       initialValue: '',
       validators: [isRequired('You need to enter an username')]);
+  // ignore: close_sinks
   final email = TextFieldBloc(
       name: 'email',
       initialValue: '',

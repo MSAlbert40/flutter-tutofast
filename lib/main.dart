@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
       },
       child: GetMaterialApp(
         title: 'TutoFast',
+        home: const LoginScreen(),
         themeMode: ThemeMode.system,
         theme: ThemeData(
           fontFamily: AppFonts.centuryGothic,
@@ -41,7 +42,6 @@ class MyApp extends StatelessWidget {
             )
           )
         ),
-        home: const LoginScreen(),
         onGenerateRoute: (settings) {
           switch (settings.name) {
             case AppRoutes.register:
