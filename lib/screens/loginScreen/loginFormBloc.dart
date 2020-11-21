@@ -51,6 +51,7 @@ class LoginFormBloc extends FormBloc<String, String> {
       // ignore: await_only_futures
       await Hive.init(directory.path);
       var _box = await Hive.openBox('session');
+      _box.put('token', _response.token);
       _box.put('username', _response.username);
       print('*** user name:');
       print(_response.username);

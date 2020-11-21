@@ -4,4 +4,5 @@ class AppRoutes {
   static const String tabs = 'tabsScreen';
 
   static const String main = 'mainScreen';
+  static const String profile = 'profileScreen';
 }

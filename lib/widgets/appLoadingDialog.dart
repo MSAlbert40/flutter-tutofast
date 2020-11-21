@@ -18,8 +18,8 @@ class AppLoadingDialog extends StatelessWidget {
     return Material(
       // onWillPop: () async => false,
       child: Center(
-        child: Column(children: [
-          Stack(children: [
+        //child: Column(children: [
+          child: Stack(children: [
             Container(
               width: screenWidth,
               height: screenHeight,
@@ -41,8 +41,8 @@ class AppLoadingDialog extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                Container(
-                  height: screenHeight / 1.3,
+                Expanded(
+                  //height: screenHeight / 1.3,
                   // color: AppColors.red,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -114,7 +114,7 @@ class AppLoadingDialog extends StatelessWidget {
             ),
             Container(
               width: screenWidth,
-              height: screenHeight,
+              height: screenHeight/1.4,
               padding: EdgeInsets.symmetric(horizontal: 80.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -128,7 +128,7 @@ class AppLoadingDialog extends StatelessWidget {
               ])
             )
           ])
-        ])
+        //])
       )
     );
   }
