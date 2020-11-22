@@ -11,13 +11,12 @@ class TabsScreenBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final _screenBloc = TabsScreenBloc.to;
     return Obx(() => IndexedStack(
-          index: _screenBloc.selectedTabRx.value.index,
-          children: const [
-            //TabsScreenTabMain(),
-            Scaffold(),
-            Scaffold(),
-            TabsScreenTabProfile(),
-          ],
-        ));
+      index: _screenBloc.selectedTabRx.value.index,
+      children: const [
+        TabsScreenTabMain(),
+        Scaffold(),
+        TabsScreenTabProfile(),
+      ],
+    ));
   }
 }

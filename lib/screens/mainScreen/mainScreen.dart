@@ -13,7 +13,7 @@ class MainScreen extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height - 60.0;
 
     final _sessionbox = Hive.box('session');
-    final _isStudent = _sessionbox.get('username') == 'jesus.student';
+    final _isRole = _sessionbox.get('role') == 'ROLE_STUDENT';
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -96,7 +96,7 @@ class MainScreen extends StatelessWidget {
                                   height: ((screenHeight / 8) - 18.0) / 4,
                                   // color: AppColors.blue,
                                   child: AutoSizeText(
-                                    _isStudent ? 'Find your tutor' : 'Find your tutoring',
+                                    _isRole ? 'Find your tutor' : 'Find your tutoring',
                                     maxLines: 1,
                                     style: TextStyle(
                                       fontSize: 16.5,
@@ -146,7 +146,7 @@ class MainScreen extends StatelessWidget {
                                       Container(
                                         width: ((screenWidth - 85.0) / 3.8) / 2,
                                         child: AutoSizeText(
-                                          _isStudent ? '250' : '450',
+                                          _isRole ? '250' : '450',
                                           maxLines: 1,
                                           style: TextStyle(
                                             fontSize: 45.0,
@@ -183,7 +183,7 @@ class MainScreen extends StatelessWidget {
                                         height: (((screenHeight / 11) - 24.0) / 1) / 1.7,
                                         // color: AppColors.blue,
                                         child: AutoSizeText(
-                                          _isStudent ? 'Credit' : 'Teaching Hours',
+                                          _isRole ? 'Credit' : 'Teaching Hours',
                                           maxLines: 1,
                                           style: TextStyle(
                                             fontSize: 20.0,
@@ -199,12 +199,12 @@ class MainScreen extends StatelessWidget {
                                         height: (((screenHeight / 11) - 24.0) / 1) / 2.5,
                                         // color: AppColors.cyan,
                                         child: AutoSizeText(
-                                          _isStudent ? 'A class requires a minium 2 hours' : 'Hours represent pay per month',
+                                          _isRole ? 'A class requires a minium 2 hours' : 'Hours represent pay per month',
                                           maxLines: 1,
                                           style: TextStyle(
                                             fontSize: 16.0,
                                             fontFamily: AppFonts.centuryGothic,
-                                            color: _isStudent ? AppColors.dark : AppColors.white
+                                            color: _isRole ? AppColors.dark : AppColors.white
                                           )
                                         )
                                       )

@@ -9,8 +9,7 @@ class ProfileResultDTO {
   final int creditHours;
   final String averageStars;
 
-  ProfileResultDTO(
-    {
+  ProfileResultDTO({
       this.id,
       this.name,
       this.lastName,
@@ -20,8 +19,7 @@ class ProfileResultDTO {
       this.address,
       this.creditHours,
       this.averageStars
-    }
-  );
+  });
 
   factory ProfileResultDTO.fromJson(Map<String, dynamic> json) {
     return ProfileResultDTO(
@@ -33,9 +31,7 @@ class ProfileResultDTO {
       birthday: json['birthday'],
       address: json['address'],
       creditHours: json['creditHours'],
-      averageStars: json['averageStars'],
+      averageStars: json['averageStars']
     );
   }
-
-
 }

@@ -13,7 +13,7 @@ class LoginResultDTO {
     return LoginResultDTO(
       token: json['token'],
       username: json['username'],
-      roles: json['roles'],
+      roles: json['roles']
     );
   }
 }
