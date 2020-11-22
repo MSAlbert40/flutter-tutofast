@@ -13,7 +13,7 @@ class ProfileData{
 
       String token = _sessionbox.get('token');
       String username = _sessionbox.get('username');
-      String url = 'https://tutofast-api.herokuapp.com/api/users/username/'+ username;
+      String url = 'https://tutofast-api.herokuapp.com/api/users/username/' + username;
       String auth = 'Bearer ' + token;
 
       final _profileDataResult = await dio.get(url,

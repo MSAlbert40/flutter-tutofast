@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tutofast/constants/app_colors.dart';
 import 'package:flutter_tutofast/constants/app_fonts.dart';
 import 'package:flutter_tutofast/screens/loginScreen/loginScreen.dart';
-import 'package:flutter_tutofast/screens/profileScreen/profileScreen.dart';
 import 'package:flutter_tutofast/screens/registerScreen/registerScreen.dart';
 import 'package:flutter_tutofast/screens/tabs/screen.dart';
 import 'package:flutter_tutofast/screens/tabs/screen_bindings.dart';
