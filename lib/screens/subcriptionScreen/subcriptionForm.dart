@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:flutter_tutofast/constants/app_colors.dart';
 import 'package:flutter_tutofast/screens/registerScreen/registerFormBloc.dart';
-import 'package:flutter_tutofast/screens/registerScreen/registerScreen.dart';
 import 'package:flutter_tutofast/widgets/buttons/mainButton.dart';
 
 class SubcriptionForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
-    
+
     return BlocProvider(
       create: (context) => RegisterFormBloc(),
       child: Builder(builder: (context) {
@@ -39,7 +38,6 @@ class SubcriptionForm extends StatelessWidget {
                             SingleChildScrollView(
                               scrollDirection: Axis.horizontal,
                               child: Row(children: [
-                                
                               ])
                             )
                           ])
@@ -69,9 +67,6 @@ class SubcriptionForm extends StatelessWidget {
                       color: AppColors.blue,
                       onPressed: () {
                         context.bloc<RegisterFormBloc>().submit();
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => RegisterDataScreen()
-                        ));
                       }
                     )
                   )

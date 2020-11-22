@@ -13,14 +13,21 @@ class TabsScreenBottomNavigation extends StatelessWidget {
   Widget build(BuildContext context) {
     final _screenBloc = TabsScreenBloc.to;
     return Container(
-      height: 60,
+      height: 54.0,
       padding: const EdgeInsets.symmetric(horizontal: AppSizes.horizontalSpacing),
-      color: AppColors.white,
+      color: Theme.of(context).primaryColor,
       child: Obx(() {
         final _selectedTab = _screenBloc.selectedTabRx.value;
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            TabsScreenBottomNavigationTab(
+                label: 'Perfil',
+                icon: Icons.person,
+                isActive: _selectedTab == TabItem.profile,
+                onTap: () {
+                  _screenBloc.setSelectedTab(TabItem.profile);
+                }),
             TabsScreenBottomNavigationTab(
                 label: 'Inicio',
                 icon: Icons.home,
@@ -30,17 +37,10 @@ class TabsScreenBottomNavigation extends StatelessWidget {
                 }),
             TabsScreenBottomNavigationTab(
                 label: 'Horario',
-                icon: Icons.grid_on,
+                icon: Icons.calendar_today,
                 isActive: _selectedTab == TabItem.schedule,
                 onTap: () {
                   _screenBloc.setSelectedTab(TabItem.schedule);
-                }),
-            TabsScreenBottomNavigationTab(
-                label: 'Perfil',
-                icon: Icons.person,
-                isActive: _selectedTab == TabItem.profile,
-                onTap: () {
-                  _screenBloc.setSelectedTab(TabItem.profile);
                 }),
           ],
         );
