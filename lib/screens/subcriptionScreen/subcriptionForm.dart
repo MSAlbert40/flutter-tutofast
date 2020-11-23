@@ -33,7 +33,7 @@ class SubcriptionForm extends StatelessWidget {
                       child: Column(children: [
                         Container(
                           height: ((((screenHeight / 1.304) - 50.0) / 1.125) / 1.09) / 1.15,
-                          // color: AppColors.red,
+                          olor: AppColors.red,
                           child: Column(children: [
                             SingleChildScrollView(
                               scrollDirection: Axis.horizontal,
