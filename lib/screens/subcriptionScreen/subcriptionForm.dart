@@ -38,6 +38,7 @@ class SubcriptionForm extends StatelessWidget {
                             SingleChildScrollView(
                               scrollDirection: Axis.horizontal,
                               child: Row(children: [
+                                // Aquí se debe incuir un listView con las subcripciones
                               ])
                             )
                           ])
