@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tutofast/constants/app_colors.dart';
 import 'package:flutter_tutofast/constants/app_fonts.dart';
@@ -9,154 +10,79 @@ class ComplaintScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
+    final screenHeight = MediaQuery.of(context).size.height - 54.0;
     
     return Scaffold(
       body: SingleChildScrollView(
-        child: Container(
-          //width: screenWidth,
-          //height: screenHeight,
-          child: Column(
-            //crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 15),
-                child: Column(
-                  children: [
-                    Container(
-                      width: screenWidth,
-                      height: screenHeight/ 4.5,
-                      //padding: EdgeInsets.symmetric(horizontal: 20, vertical: 0),
-                      decoration: BoxDecoration(
-                        color: AppColors.red,
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(30),
-                          bottomRight: Radius.circular(30),
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 0.7,
-                            blurRadius: 0.1,
-                            offset: Offset(0, 1),
-                          ),
-                        ],
-                      ),
-                      child: Align(
-                        child: Container(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text('Complaint Center', 
-                                style: TextStyle(
-                                  fontSize: 35, 
-                                  fontFamily: AppFonts.bebasNeue,
-                                  color: Colors.white
-                                )
-                              ),
-                              Text('We take care of your problems 24/7', 
-                                style: TextStyle(
-                                  fontSize: 12, 
-                                  fontFamily: AppFonts.centuryGothic,
-                                  color: Colors.white
-                                )
-                              ),
-                            ],
+        child: Column(children: [
+          Stack(children: [
+            Container(
+              width: screenWidth,
+              height: screenHeight,
+              // color: AppColors.cyan,
+              margin: EdgeInsets.symmetric(horizontal: 22.0),
+              child: Column(children: [
+                Container(
+                  height: screenHeight / 6,
+                  decoration: BoxDecoration(
+                    color: AppColors.red,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(12.0),
+                      bottomRight: Radius.circular(12.0)
+                    ),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(height: 25.0),
+                      Container(
+                        width: screenWidth,
+                        alignment: Alignment.center,
+                        child: AutoSizeText(
+                          'Complaint Center',
+                          maxLines: 1,
+                          style: TextStyle(
+                            fontSize: 45.0,
+                            color: AppColors.white,
+                            fontFamily: AppFonts.bebasNeue,
+                            height: 1
                           )
                         )
                       ),
-                    ),
-                    SizedBox(height: 8),
-                    Container(
-                      width: screenWidth,
-                      height: screenHeight/ 7,
-                      //padding: EdgeInsets.symmetric(horizontal: 20, vertical: 0),
-                      decoration: BoxDecoration(
-                      color: AppColors.red,
-                      borderRadius: BorderRadius.all(Radius.circular(30)),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 0.7,
-                            blurRadius: 0.1,
-                            offset: Offset(0, 1),
-                          ),
-                        ],
-                      ),
-                      child: Align(
-                        child: Container(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start, 
-                                    children: [
-                                      Container(
-                                        width: screenWidth/6,
-                                        height: screenHeight/12,
-                                        decoration: BoxDecoration(
-                                          color: AppColors.red,
-                                          //borderRadius: BorderRadius.circular(100.0),
-                                          image: DecorationImage(
-                                            image: AssetImage('assets/images/backgrounds/SD1.png'),
-                                            alignment: Alignment.center,
-                                            fit: BoxFit.fill
-                                          ),
-                                        ),
-                                      ),
-                                    ]
-                                  ),
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start, 
-                                    children: [
-                                      Text('Session Problems', 
-                                        style: TextStyle(
-                                          fontSize: 26, 
-                                          fontFamily: AppFonts.bebasNeue,
-                                          color: Colors.white
-                                        )
-                                      ),
-                                      Text('Report your problems', 
-                                        style: TextStyle(
-                                          fontSize: 12, 
-                                          fontFamily: AppFonts.centuryGothic,
-                                          color: Colors.white
-                                        )
-                                      ),
-                                    ]
-                                  ),
-                                ],
-                              ),   
-                            ],
+                      Container(
+                        width: screenWidth,
+                        alignment: Alignment.center,
+                        child: AutoSizeText(
+                          'We take care of your problems 24/7',
+                          maxLines: 1,
+                          style: TextStyle(
+                            fontSize: 14.5,
+                            letterSpacing: -0.5,
+                            color: AppColors.white,
+                            fontFamily: AppFonts.centuryGothic,
+                            height: 0.7
                           )
                         )
-                      ),
-                    ),
-                    SizedBox(height: 8),
-                    /*Container(
-                      width: screenWidth,
-                      height: screenHeight / 3,
-                      //padding: EdgeInsets.symmetric(horizontal: 20, vertical: 0),
-                      decoration: BoxDecoration(
-                        color: AppColors.green,
-                        borderRadius: BorderRadius.all(Radius.circular(30)),
-                      ),
-                      child:
-                      Column(
-                        children: [*/
-                          ComplaintForm(),
-                        //]
-                      //)
-                    //)
-                  ]
+                      )
+                  ])
+                ),
+                Container(
+                  height: screenHeight / 1.22,
+                  // color: AppColors.green,
+                  child: SingleChildScrollView(
+                    child: Column(children: [
+                      SizedBox(height: 25.0),
+                      Container(
+                        width: screenWidth,
+                        child: Column(children: [ComplaintForm()])
+                      )
+                    ])
+                  )
                 )
-              )
-            ],
-           ),
-        )
+              ])
+            )
+          ])
+        ])
       )
     );
   }

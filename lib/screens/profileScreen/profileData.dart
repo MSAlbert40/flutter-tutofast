@@ -32,5 +32,4 @@ class ProfileData{
       return null;
     }
   }
-
 }

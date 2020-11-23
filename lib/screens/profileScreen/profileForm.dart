@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tutofast/constants/app_colors.dart';
 import 'package:flutter_tutofast/constants/app_fonts.dart';
 import 'package:flutter_tutofast/dto/profileResultDTO.dart';
+import 'package:flutter_tutofast/screens/complaintScreen/complaintScreen.dart';
 import 'package:flutter_tutofast/screens/profileScreen/profileData.dart';
+import 'package:flutter_tutofast/widgets/buttons/microButton.dart';
 
 import 'package:hive/hive.dart';
 
@@ -43,7 +45,7 @@ class _ProfileFormState extends State<ProfileForm> {
     final _sessionbox = Hive.box('session');
     final _isRole = _sessionbox.get('role') == 'ROLE_STUDENT';
 
-    final studentInfo = Column(children: [
+    final teacherInfo = Column(children: [
       SizedBox(height: 25.0),
       Container(
         width: screenWidth,
@@ -64,15 +66,82 @@ class _ProfileFormState extends State<ProfileForm> {
       )
     ]);
 
-    final teacherInfo = Column(children: [
+    final studentInfo = Column(children: [
       SizedBox(height: 25.0),
       Container(
         width: screenWidth,
         height: screenHeight / 10.5,
+        padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
         decoration: BoxDecoration(
           color: AppColors.cyan,
           borderRadius: BorderRadius.circular(12.0)
         ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: screenWidth,
+              height: (screenHeight / 10.5) - 24.0,
+              // color: AppColors.blue,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                Container(
+                  width: (screenWidth - 84.0) / 2.6,
+                  height: (screenHeight / 10.5) - 24.0,
+                  // color: AppColors.green,
+                  alignment: Alignment.centerRight,
+                  padding: EdgeInsets.symmetric(horizontal: 10.0),
+                  child: AutoSizeText(
+                    'Free',
+                    maxLines: 1,
+                    style: TextStyle(
+                      fontSize: 45.0,
+                      color: AppColors.white,
+                      fontFamily: AppFonts.centuryGothic,
+                      fontWeight: FontWeight.bold
+                    )
+                  )
+                ),
+                Container(
+                  width: (screenWidth - 84.0) / 1.65,
+                  height: (screenHeight / 10.5) - 24.0,
+                  // color: AppColors.red,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        child: AutoSizeText(
+                          '7 days trial',
+                          maxLines: 1,
+                          style: TextStyle(
+                            fontSize: 18.0,
+                            height: 1.5,
+                            fontFamily: AppFonts.centuryGothic,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.white
+                          )
+                        )
+                      ),
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        child: AutoSizeText(
+                          'Your credit to use is 2 hours',
+                          maxLines: 1,
+                          style: TextStyle(
+                            fontSize: 13.5,
+                            fontFamily: AppFonts.centuryGothic,
+                            fontWeight: FontWeight.normal,
+                            color: AppColors.white
+                          )
+                        )
+                      )
+                  ])
+                )
+              ])
+            )
+        ])
       )
     ]);
 
@@ -133,7 +202,7 @@ class _ProfileFormState extends State<ProfileForm> {
                                         children: [
                                           Container(
                                             child: AutoSizeText(
-                                              'T',
+                                              _isRole ? 'S' : 'T',
                                               maxLines: 1,
                                               style: TextStyle(
                                                 fontSize: 45.0,
@@ -145,7 +214,7 @@ class _ProfileFormState extends State<ProfileForm> {
                                           ),
                                           Container(
                                             child: AutoSizeText(
-                                              'Teacher',
+                                              _isRole ? 'Student' : 'Teacher',
                                               maxLines: 1,
                                               style: TextStyle(
                                                 fontSize: 18.0,
@@ -178,7 +247,7 @@ class _ProfileFormState extends State<ProfileForm> {
                                         children: [
                                           Container(
                                             child: AutoSizeText(
-                                              '2',
+                                              profile.creditHours.toString() ?? '',
                                               maxLines: 1,
                                               style: TextStyle(
                                                 fontSize: 45.0,
@@ -214,7 +283,7 @@ class _ProfileFormState extends State<ProfileForm> {
                                   height: ((screenHeight / 3.3) / 3.2) / 3.5,
                                   alignment: Alignment.bottomCenter,
                                   child: AutoSizeText(
-                                    'Nicolas Alexander',
+                                    profile.name ?? '',
                                     maxLines: 1,
                                     style: TextStyle(
                                       fontSize: 19.0,
@@ -228,7 +297,7 @@ class _ProfileFormState extends State<ProfileForm> {
                                   height: ((screenHeight / 3.3) / 3.2) / 2.1,
                                   alignment: Alignment.topCenter,
                                   child: AutoSizeText(
-                                    'Quiroz Risopatron',
+                                    profile.lastName ?? '',
                                     maxLines: 1,
                                     style: TextStyle(
                                       fontSize: 35.0,
@@ -249,7 +318,7 @@ class _ProfileFormState extends State<ProfileForm> {
                   //color: AppColors.green
                   child: SingleChildScrollView(
                     child: Column(children: [
-                      _isRole ? teacherInfo : studentInfo,
+                      _isRole ? studentInfo : teacherInfo,
                       SizedBox(height: 25.0),
                       Container(
                         width: screenWidth,
@@ -299,7 +368,7 @@ class _ProfileFormState extends State<ProfileForm> {
                                 Container(
                                   width: (screenWidth - 88.0) / 1.44,
                                   child: AutoSizeText(
-                                    'Quiroz Risopatron',
+                                    profile.lastName ?? '',
                                     maxLines: 1,
                                     style: TextStyle(
                                       fontSize: 16.0,
@@ -327,7 +396,7 @@ class _ProfileFormState extends State<ProfileForm> {
                                 Container(
                                   width: (screenWidth - 88.0) / 1.44,
                                   child: AutoSizeText(
-                                    'Nicolas Alexamder',
+                                    profile.name ?? '',
                                     maxLines: 1,
                                     style: TextStyle(
                                       fontSize: 16.0,
@@ -355,7 +424,7 @@ class _ProfileFormState extends State<ProfileForm> {
                                 Container(
                                   width: (screenWidth - 88.0) / 1.44,
                                   child: AutoSizeText(
-                                    '71558379',
+                                    profile.dni ?? '',
                                     maxLines: 1,
                                     style: TextStyle(
                                       fontSize: 16.0,
@@ -383,7 +452,7 @@ class _ProfileFormState extends State<ProfileForm> {
                                 Container(
                                   width: (screenWidth - 88.0) / 1.44,
                                   child: AutoSizeText(
-                                    'qrisopatron.nicolas@gmail.com',
+                                    profile.email ?? '',
                                     maxLines: 1,
                                     style: TextStyle(
                                       fontSize: 16.0,
@@ -411,7 +480,7 @@ class _ProfileFormState extends State<ProfileForm> {
                                 Container(
                                   width: (screenWidth - 88.0) / 1.44,
                                   child: AutoSizeText(
-                                    '16/05/97',
+                                    profile.birthday ?? '',
                                     maxLines: 1,
                                     style: TextStyle(
                                       fontSize: 16.0,
@@ -439,7 +508,7 @@ class _ProfileFormState extends State<ProfileForm> {
                                 Container(
                                   width: (screenWidth - 88.0) / 1.44,
                                   child: AutoSizeText(
-                                    'Urb. Caman 789',
+                                    profile.address ?? '',
                                     maxLines: 1,
                                     style: TextStyle(
                                       fontSize: 16.0,
@@ -454,13 +523,16 @@ class _ProfileFormState extends State<ProfileForm> {
                         ])
                       ),
                       SizedBox(height: 25.0),
-                      Container(
+                      MicroButton(
                         width: screenWidth,
                         height: screenHeight / 9.5,
-                        decoration: BoxDecoration(
-                          color: AppColors.red,
-                          borderRadius: BorderRadius.circular(12.0)
-                        ),
+                        color: AppColors.red,
+                        borderRadius: BorderRadius.circular(12.0),
+                        onPressed: (){
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => ComplaintScreen()
+                          ));
+                        },
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
