@@ -5,12 +5,12 @@ import 'package:flutter_tutofast/constants/app_fonts.dart';
 import 'package:flutter_tutofast/dto/profileResultDTO.dart';
 import 'package:flutter_tutofast/screens/complaintScreen/complaintScreen.dart';
 import 'package:flutter_tutofast/screens/profileScreen/profileData.dart';
+import 'package:flutter_tutofast/screens/reviewScreen/reviewScreen.dart';
 import 'package:flutter_tutofast/widgets/buttons/microButton.dart';
 
 import 'package:hive/hive.dart';
 
 class ProfileForm extends StatefulWidget {
-
   @override
   _ProfileFormState createState() => _ProfileFormState();
 }
@@ -30,7 +30,6 @@ class _ProfileFormState extends State<ProfileForm> {
 
   Future loadProfile() async {
     ProfileResultDTO result = await profileData.getDataProfile();
-
     setState(() {
       profile = result;
     });    
@@ -57,14 +56,12 @@ class _ProfileFormState extends State<ProfileForm> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           mainAxisSize: MainAxisSize.max,
           children: [
-            Container(
+            MicroButton(
               width: (screenWidth - 44.0) / 3.3,
               height: screenHeight / 14,
               padding: EdgeInsets.symmetric(horizontal: 10.0),
-              decoration: BoxDecoration(
-                color: AppColors.blue,
-                borderRadius: BorderRadius.circular(12.0)
-              ),
+              color: AppColors.blue,
+              borderRadius: BorderRadius.circular(12.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -121,7 +118,12 @@ class _ProfileFormState extends State<ProfileForm> {
                       )
                     )
                   )
-              ])
+              ]),
+              onPressed: (){
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => ReviewScreen()
+                ));
+              }
             ),
            Container(
               width: (screenWidth - 44.0) / 3.3,
@@ -454,7 +456,6 @@ class _ProfileFormState extends State<ProfileForm> {
                                                 fontSize: 45.0,
                                                 color: AppColors.white,
                                                 fontFamily: AppFonts.bebasNeue,
-
                                               )
                                             )
                                           ),
