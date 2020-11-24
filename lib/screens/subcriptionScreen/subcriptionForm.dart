@@ -28,7 +28,6 @@ class _SubcriptionFormState extends State<SubcriptionForm> {
 
   Future loadSubcription() async {
     List result = await subcriptionData.getDataSubcription();
-
     setState(() {
       subcriptions = result;
     });
@@ -36,6 +35,7 @@ class _SubcriptionFormState extends State<SubcriptionForm> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
     return BlocProvider(
@@ -65,77 +65,152 @@ class _SubcriptionFormState extends State<SubcriptionForm> {
                           child: Column(children: [
                             SingleChildScrollView(
                               scrollDirection: Axis.horizontal,
-                              child: Row(children: [
-                                for(var item in  subcriptions) (
-
-
+                              child: Row(
+                                children: [
+                                for(var item in subcriptions)(
                                   Container(
-                                    width: 180,
-                                    margin: EdgeInsets.only(right: 20),
+                                    width: screenWidth / 1.7,
                                     height: ((((screenHeight / 1.304) - 50.0) / 1.125) / 1.09) / 1.15,
-                                    decoration: BoxDecoration(color: AppColors.cyan, borderRadius: BorderRadius.all(Radius.circular(20.0))),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(12.0),
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          Text(
-                                            "Credit",
-                                            style: TextStyle(fontSize: 20, color: Colors.white, fontFamily: AppFonts.centuryGothic, fontWeight: FontWeight.bold),
-                                          ),
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          Text(
-                                            item.description,
-                                            style: TextStyle(fontSize: 10, color: Colors.white),
-                                          ),
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          Text(
-                                            "No Ads",
-                                            style: TextStyle(fontSize: 20, color: Colors.white, fontFamily: AppFonts.centuryGothic, fontWeight: FontWeight.bold),
-                                          ),
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          Text(
-                                            "Banners and video adversiting will be removed.",
-                                            style: TextStyle(fontSize: 10, color: Colors.white),
-                                          ),
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          Text(
-                                            item.title,
-                                            style: TextStyle(fontSize: 32, color: Colors.white, fontFamily: AppFonts.centuryGothic, fontWeight: FontWeight.bold),
-                                          ),
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          Text(
-                                            item.period,
-                                            style: TextStyle(fontSize: 20, color: Colors.white, fontFamily: AppFonts.centuryGothic, fontWeight: FontWeight.bold),
-                                          ),
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          Text(
-                                            "\$" + item.price.toString(),
-                                            style: TextStyle(fontSize: 10, color: Colors.white),
-                                          ),
-                                        ],
-                                      ),
+                                    margin: EdgeInsets.only(right: 28.0),
+                                    decoration: BoxDecoration(
+                                      color: AppColors.cyan,
+                                      borderRadius: BorderRadius.all(Radius.circular(15.0))
                                     ),
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Container(
+                                          height: (((((screenHeight / 1.304) - 50.0) / 1.125) / 1.09) / 1.15) / 1.35,
+                                          // color: AppColors.red,
+                                          child: Column(children: [
+                                            Container(
+                                              width: screenWidth / 1.7,
+                                              height: ((((((screenHeight / 1.304) - 50.0) / 1.125) / 1.09) / 1.15) / 1.35) / 3,
+                                              padding: EdgeInsets.only(right: 15.0, left: 35.0, top: 17.0),
+                                              // color: AppColors.green,
+                                              child: Column(children: [
+                                                Container(
+                                                  alignment: Alignment.centerLeft,
+                                                  child: AutoSizeText(
+                                                    'Credit',
+                                                    maxLines: 1,
+                                                    style: TextStyle(
+                                                      fontSize: 20.0,
+                                                      color: AppColors.white,
+                                                      fontFamily: AppFonts.centuryGothic,
+                                                      fontWeight: FontWeight.bold,
+                                                    )
+                                                  )
+                                                ),
+                                                Container(
+                                                  alignment: Alignment.bottomLeft,
+                                                  child: AutoSizeText(
+                                                    item.description,
+                                                    maxLines: 3,
+                                                    style: TextStyle(
+                                                      fontSize: 13.5,
+                                                      color: AppColors.white,
+                                                      fontFamily: AppFonts.centuryGothic,
+                                                    )
+                                                  )
+                                                )
+                                              ])
+                                            ),
+                                            Container(
+                                              width: screenWidth / 1.7,
+                                              height: ((((((screenHeight / 1.304) - 50.0) / 1.125) / 1.09) / 1.15) / 1.35) / 3,
+                                              padding: EdgeInsets.only(right: 15.0, left: 35.0, top: 3.0),
+                                              // color: AppColors.green,
+                                              child: Column(children: [
+                                                Container(
+                                                  alignment: Alignment.centerLeft,
+                                                  child: AutoSizeText(
+                                                    'No Ads',
+                                                    maxLines: 1,
+                                                    style: TextStyle(
+                                                      fontSize: 20.0,
+                                                      color: AppColors.white,
+                                                      fontFamily: AppFonts.centuryGothic,
+                                                      fontWeight: FontWeight.bold,
+                                                    )
+                                                  )
+                                                ),
+                                                Container(
+                                                  alignment: Alignment.bottomLeft,
+                                                  child: AutoSizeText(
+                                                    'Banners and video advertising will be removed.',
+                                                    maxLines: 2,
+                                                    style: TextStyle(
+                                                      fontSize: 13.5,
+                                                      color: AppColors.white,
+                                                      fontFamily: AppFonts.centuryGothic,
+                                                    )
+                                                  )
+                                                )
+                                              ])
+                                            ),
+                                          ])
+                                        ),
+                                        Container(
+                                          height: (((((screenHeight / 1.304) - 50.0) / 1.125) / 1.09) / 1.15) / 3.9,
+                                          // color: AppColors.green,
+                                          padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.end,
+                                            children: [
+                                            Container(
+                                              height: (((((((screenHeight / 1.304) - 50.0) / 1.125) / 1.09) / 1.15) / 3.9) - 24) / 1.93,
+                                              alignment: Alignment.bottomLeft,
+                                              child: AutoSizeText(
+                                                item.title,
+                                                maxLines: 1,
+                                                style: TextStyle(
+                                                  fontSize: 46.0,
+                                                  color: AppColors.white,
+                                                  fontFamily: AppFonts.centuryGothic,
+                                                  fontWeight: FontWeight.bold,
+                                                  height: 1
+                                                )
+                                              )
+                                            ),
+                                            Container(
+                                              height: (((((((screenHeight / 1.304) - 50.0) / 1.125) / 1.09) / 1.15) / 3.9) - 24) / 4.2,
+                                              alignment: Alignment.topLeft,
+                                              child: AutoSizeText(
+                                                item.period,
+                                                maxLines: 1,
+                                                style: TextStyle(
+                                                  fontSize: 16.0,
+                                                  color: AppColors.white,
+                                                  fontFamily: AppFonts.centuryGothic,
+                                                  fontWeight: FontWeight.bold,
+                                                  height: 1
+                                                )
+                                              )
+                                            ),
+                                            Container(
+                                              height: (((((((screenHeight / 1.304) - 50.0) / 1.125) / 1.09) / 1.15) / 3.9) - 24) / 4.2,
+                                              alignment: Alignment.topLeft,
+                                              child: AutoSizeText(
+                                                'Pay \$' + item.price.toString() + ' per moth',
+                                                maxLines: 1,
+                                                style: TextStyle(
+                                                  fontSize: 15.5,
+                                                  color: AppColors.white,
+                                                  fontFamily: AppFonts.centuryGothic,
+                                                )
+                                              )
+                                            )
+                                          ])
+                                        )
+                                    ])
                                   )
-
-
-                                )                            
+                                )
                               ])
                             )
                           ])
                         ),
+                        SizedBox(height: 8.0),
                         Container(
                           height: ((((screenHeight / 1.304) - 50.0) / 1.125) / 1.09) / 14,
                           // color: AppColors.blue,
