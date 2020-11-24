@@ -20,7 +20,7 @@ class SelectTypeComplaint extends StatelessWidget {
         children: [
           Container(
             width: (screenWidth - 64.0) / 8,
-            height: (screenHeight / 7.5) - 30.0,
+            height: (screenHeight / 8.5) - 30.0,
             // color: AppColors.blue,
             child: FloatingActionButton(
               elevation: 0,
@@ -34,7 +34,7 @@ class SelectTypeComplaint extends StatelessWidget {
           ),
           Container(
             width: (screenWidth - 64.0) / 1.34,
-            height: (screenHeight / 7.5) - 30.0,
+            height: (screenHeight / 8.5) - 30.0,
             // color: AppColors.green,
             child: PageView(
               controller: _controller,
@@ -46,11 +46,11 @@ class SelectTypeComplaint extends StatelessWidget {
                     children: [
                       Container(
                         width: ((screenWidth - 64.0) / 1.34) / 3,
-                        height: (screenHeight / 7.5) - 30.0,
+                        height: (screenHeight / 8.5) - 30.0,
                         child: Column(children: [
                           Container(
                             width: (((screenWidth - 64.0) / 1.34) / 3) - 20.0,
-                            height: (screenHeight / 7.5) - 30.0,
+                            height: (screenHeight / 8.5) - 30.0,
                             decoration: const BoxDecoration(
                               // color: AppColors.cyan,
                               image: DecorationImage(
@@ -63,7 +63,7 @@ class SelectTypeComplaint extends StatelessWidget {
                       ),
                       Container(
                         width: ((screenWidth - 64.0) / 1.34) / 1.5,
-                        height: (screenHeight / 7.5) - 30.0,
+                        height: (screenHeight / 8.5) - 30.0,
                         // color: AppColors.cyan,
                         padding: EdgeInsets.symmetric(vertical: 5.0),
                         child: Column(
@@ -104,11 +104,11 @@ class SelectTypeComplaint extends StatelessWidget {
                     children: [
                       Container(
                         width: ((screenWidth - 64.0) / 1.34) / 3,
-                        height: (screenHeight / 7.5) - 30.0,
+                        height: (screenHeight / 8.5) - 30.0,
                         child: Column(children: [
                           Container(
                             width: (((screenWidth - 64.0) / 1.34) / 3) - 15.0,
-                            height: (screenHeight / 7.5) - 30.0,
+                            height: (screenHeight / 8.5) - 30.0,
                             decoration: const BoxDecoration(
                               // color: AppColors.cyan,
                               image: DecorationImage(
@@ -121,7 +121,7 @@ class SelectTypeComplaint extends StatelessWidget {
                       ),
                       Container(
                         width: ((screenWidth - 64.0) / 1.34) / 1.5,
-                        height: (screenHeight / 7.5) - 30.0,
+                        height: (screenHeight / 8.5) - 30.0,
                         // color: AppColors.cyan,
                         padding: EdgeInsets.symmetric(vertical: 5.0),
                         child: Column(
@@ -161,7 +161,7 @@ class SelectTypeComplaint extends StatelessWidget {
           ),
           Container(
             width: (screenWidth - 64.0) / 8,
-            height: (screenHeight / 7.5) - 30.0,
+            height: (screenHeight / 8.5) - 30.0,
             // color: AppColors.cyan,
             child: FloatingActionButton(
               elevation: 0,

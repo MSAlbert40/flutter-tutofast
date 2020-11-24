@@ -5,6 +5,7 @@ import 'package:flutter_tutofast/screens/loginScreen/loginScreen.dart';
 import 'package:flutter_tutofast/screens/registerScreen/registerScreen.dart';
 import 'package:flutter_tutofast/screens/tabs/screen.dart';
 import 'package:flutter_tutofast/screens/tabs/screen_bindings.dart';
+import 'package:flutter_tutofast/widgets/appLoadingDialog.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 
 import 'constants/app_routes.dart';

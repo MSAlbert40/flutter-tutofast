@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tutofast/constants/app_colors.dart';
 import 'package:flutter_tutofast/constants/app_fonts.dart';
+import 'package:flutter_tutofast/screens/mainScreen/mainForm.dart';
 import 'package:hive/hive.dart';
 
 class MainScreen extends StatelessWidget {
@@ -214,26 +215,7 @@ class MainScreen extends StatelessWidget {
                               )
                             ])
                           ),
-                          SizedBox(height: 25.0),
-                          Container(
-                            width: screenWidth,
-                            height: screenHeight / 3.4,
-                            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 6),
-                            decoration: BoxDecoration(
-                              color: AppColors.white,
-                              borderRadius: BorderRadius.circular(12.0)
-                            ),
-                          ),
-                          SizedBox(height: 25.0),
-                          Container(
-                            width: screenWidth,
-                            height: screenHeight / 6.3,
-                            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 6),
-                            decoration: BoxDecoration(
-                              color: AppColors.white,
-                              borderRadius: BorderRadius.circular(12.0)
-                            ),
-                          )
+                          MainForm()
                         ])
                       )
                     )

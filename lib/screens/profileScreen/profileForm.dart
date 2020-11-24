@@ -5,12 +5,12 @@ import 'package:flutter_tutofast/constants/app_fonts.dart';
 import 'package:flutter_tutofast/dto/profileResultDTO.dart';
 import 'package:flutter_tutofast/screens/complaintScreen/complaintScreen.dart';
 import 'package:flutter_tutofast/screens/profileScreen/profileData.dart';
+import 'package:flutter_tutofast/screens/reviewScreen/reviewScreen.dart';
 import 'package:flutter_tutofast/widgets/buttons/microButton.dart';
 
 import 'package:hive/hive.dart';
 
 class ProfileForm extends StatefulWidget {
-
   @override
   _ProfileFormState createState() => _ProfileFormState();
 }
@@ -30,7 +30,6 @@ class _ProfileFormState extends State<ProfileForm> {
 
   Future loadProfile() async {
     ProfileResultDTO result = await profileData.getDataProfile();
-
     setState(() {
       profile = result;
     });    
@@ -46,28 +45,232 @@ class _ProfileFormState extends State<ProfileForm> {
     final _isRole = _sessionbox.get('role') == 'ROLE_STUDENT';
 
     final teacherInfo = Column(children: [
-      SizedBox(height: 25.0),
       Container(
         width: screenWidth,
-        height: screenHeight / 13,
+        height: screenHeight / 14,
         decoration: BoxDecoration(
-          color: AppColors.blue,
+          // color: AppColors.blue,
           borderRadius: BorderRadius.circular(12.0)
         ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            MicroButton(
+              width: (screenWidth - 44.0) / 3.3,
+              height: screenHeight / 14,
+              padding: EdgeInsets.symmetric(horizontal: 10.0),
+              color: AppColors.blue,
+              borderRadius: BorderRadius.circular(12.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: (((screenWidth - 44.0) / 3.3) - 20.0) / 2,
+                    height: (screenHeight / 14) / 1.5,
+                    padding: EdgeInsets.symmetric(horizontal: 5.0),
+                    // color: AppColors.cyan,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          width: (((screenWidth - 44.0) / 3.3) - 20.0) / 2,
+                          height: ((screenHeight / 14) / 1.5) / 1.4,
+                          alignment: Alignment.centerRight,
+                          child: AutoSizeText(
+                            profile.averageStars.toString() ?? '0.0',
+                            maxLines: 1,
+                            style: TextStyle(
+                              fontSize: 28.0,
+                              fontFamily: AppFonts.bebasNeue,
+                              color: AppColors.white,
+                              height: 1
+                            )
+                          )
+                        ),
+                        Container(
+                          width: (((screenWidth - 44.0) / 3.3) - 20.0) / 2,
+                          height: ((screenHeight / 14) / 1.5) / 4,
+                          alignment: Alignment.centerRight,
+                          child: AutoSizeText(
+                            'Starts',
+                            maxLines: 1,
+                            style: TextStyle(
+                              fontSize: 5.0,
+                              letterSpacing: -0.5,
+                              fontFamily: AppFonts.centuryGothic,
+                              color: AppColors.white,
+                              height: 0.4
+                            )
+                          )
+                        )
+                    ])
+                  ),
+                  Container(
+                    width: (((screenWidth - 44.0) / 3.3) - 20.0) / 2.5,
+                    height: (screenHeight / 14) / 1.5,
+                    decoration: BoxDecoration(
+                      // color: AppColors.red,
+                      image: DecorationImage(
+                        alignment: Alignment.center,
+                        fit: BoxFit.contain,
+                        image: AssetImage('assets/images/icons/TIE.png')
+                      )
+                    )
+                  )
+              ]),
+              onPressed: (){
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => ReviewScreen()
+                ));
+              }
+            ),
+           Container(
+              width: (screenWidth - 44.0) / 3.3,
+              height: screenHeight / 14,
+              padding: EdgeInsets.symmetric(horizontal: 10.0),
+              decoration: BoxDecoration(
+                color: AppColors.blue,
+                borderRadius: BorderRadius.circular(12.0)
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: (((screenWidth - 44.0) / 3.3) - 20.0) / 2,
+                    height: (screenHeight / 14) / 1.5,
+                    padding: EdgeInsets.symmetric(horizontal: 5.0),
+                    // color: AppColors.cyan,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          width: (((screenWidth - 44.0) / 3.3) - 20.0) / 2,
+                          height: ((screenHeight / 14) / 1.5) / 1.4,
+                          alignment: Alignment.centerRight,
+                          child: AutoSizeText(
+                            profile.averageStars.toString() ?? '0',
+                            maxLines: 1,
+                            style: TextStyle(
+                              fontSize: 28.0,
+                              fontFamily: AppFonts.bebasNeue,
+                              color: AppColors.white,
+                              height: 1
+                            )
+                          )
+                        ),
+                        Container(
+                          width: (((screenWidth - 44.0) / 3.3) - 20.0) / 2,
+                          height: ((screenHeight / 14) / 1.5) / 4,
+                          alignment: Alignment.centerRight,
+                          child: AutoSizeText(
+                            'Soles',
+                            maxLines: 1,
+                            style: TextStyle(
+                              fontSize: 5.0,
+                              letterSpacing: -0.5,
+                              fontFamily: AppFonts.centuryGothic,
+                              color: AppColors.white,
+                              height: 0.4
+                            )
+                          )
+                        )
+                    ])
+                  ),
+                  Container(
+                    width: (((screenWidth - 44.0) / 3.3) - 20.0) / 2.5,
+                    height: (screenHeight / 14) / 1.5,
+                    decoration: BoxDecoration(
+                      // color: AppColors.red,
+                      image: DecorationImage(
+                        alignment: Alignment.center,
+                        fit: BoxFit.contain,
+                        image: AssetImage('assets/images/icons/TIC.png')
+                      )
+                    )
+                  )
+              ])
+            ),
+            Container(
+              width: (screenWidth - 44.0) / 3.3,
+              height: screenHeight / 14,
+              padding: EdgeInsets.symmetric(horizontal: 10.0),
+              decoration: BoxDecoration(
+                color: AppColors.blue,
+                borderRadius: BorderRadius.circular(12.0)
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: (((screenWidth - 44.0) / 3.3) - 20.0) / 2,
+                    height: (screenHeight / 14) / 1.5,
+                    padding: EdgeInsets.symmetric(horizontal: 5.0),
+                    // color: AppColors.cyan,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          width: (((screenWidth - 44.0) / 3.3) - 20.0) / 2,
+                          height: ((screenHeight / 14) / 1.5) / 1.4,
+                          alignment: Alignment.centerRight,
+                          child: AutoSizeText(
+                            profile.averageStars.toString() ?? '0',
+                            maxLines: 1,
+                            style: TextStyle(
+                              fontSize: 28.0,
+                              fontFamily: AppFonts.bebasNeue,
+                              color: AppColors.white,
+                              height: 1
+                            )
+                          )
+                        ),
+                        Container(
+                          width: (((screenWidth - 44.0) / 3.3) - 20.0) / 2,
+                          height: ((screenHeight / 14) / 1.5) / 4,
+                          alignment: Alignment.centerRight,
+                          child: AutoSizeText(
+                            'Class',
+                            maxLines: 1,
+                            style: TextStyle(
+                              fontSize: 5.0,
+                              letterSpacing: -0.5,
+                              fontFamily: AppFonts.centuryGothic,
+                              color: AppColors.white,
+                              height: 0.4
+                            )
+                          )
+                        )
+                    ])
+                  ),
+                  Container(
+                    width: (((screenWidth - 44.0) / 3.3) - 20.0) / 2.5,
+                    height: (screenHeight / 14) / 1.5,
+                    decoration: BoxDecoration(
+                      // color: AppColors.red,
+                      image: DecorationImage(
+                        alignment: Alignment.center,
+                        fit: BoxFit.contain,
+                        image: AssetImage('assets/images/icons/TIG.png')
+                      )
+                    )
+                  )
+              ])
+            ), 
+        ])
       ),
       SizedBox(height: 25.0),
       Container(
         width: screenWidth,
-        height: screenHeight / 7.4,
+        height: screenHeight / 7.2,
         decoration: BoxDecoration(
           color: AppColors.white,
           borderRadius: BorderRadius.circular(12.0)
-        ),
+        )
       )
     ]);
 
     final studentInfo = Column(children: [
-      SizedBox(height: 25.0),
       Container(
         width: screenWidth,
         height: screenHeight / 10.5,
@@ -247,13 +450,12 @@ class _ProfileFormState extends State<ProfileForm> {
                                         children: [
                                           Container(
                                             child: AutoSizeText(
-                                              profile.creditHours.toString() ?? '',
+                                              profile.creditHours.toString() ?? '0',
                                               maxLines: 1,
                                               style: TextStyle(
                                                 fontSize: 45.0,
                                                 color: AppColors.white,
                                                 fontFamily: AppFonts.bebasNeue,
-
                                               )
                                             )
                                           ),
@@ -283,7 +485,7 @@ class _ProfileFormState extends State<ProfileForm> {
                                   height: ((screenHeight / 3.3) / 3.2) / 3.5,
                                   alignment: Alignment.bottomCenter,
                                   child: AutoSizeText(
-                                    profile.name ?? '',
+                                    profile.name ?? 'Names',
                                     maxLines: 1,
                                     style: TextStyle(
                                       fontSize: 19.0,
@@ -297,7 +499,7 @@ class _ProfileFormState extends State<ProfileForm> {
                                   height: ((screenHeight / 3.3) / 3.2) / 2.1,
                                   alignment: Alignment.topCenter,
                                   child: AutoSizeText(
-                                    profile.lastName ?? '',
+                                    profile.lastName ?? 'Surnames',
                                     maxLines: 1,
                                     style: TextStyle(
                                       fontSize: 35.0,
@@ -314,8 +516,11 @@ class _ProfileFormState extends State<ProfileForm> {
                   ])
                 ),
                 Container(
-                  height: screenHeight / 1.44,
-                  //color: AppColors.green
+                  height: screenHeight / 29
+                ),
+                Container(
+                  height: screenHeight / 1.52,
+                  // color: AppColors.green,
                   child: SingleChildScrollView(
                     child: Column(children: [
                       _isRole ? studentInfo : teacherInfo,
@@ -368,7 +573,7 @@ class _ProfileFormState extends State<ProfileForm> {
                                 Container(
                                   width: (screenWidth - 88.0) / 1.44,
                                   child: AutoSizeText(
-                                    profile.lastName ?? '',
+                                    profile.lastName ?? 'Surnames',
                                     maxLines: 1,
                                     style: TextStyle(
                                       fontSize: 16.0,
@@ -396,7 +601,7 @@ class _ProfileFormState extends State<ProfileForm> {
                                 Container(
                                   width: (screenWidth - 88.0) / 1.44,
                                   child: AutoSizeText(
-                                    profile.name ?? '',
+                                    profile.name ?? 'Names',
                                     maxLines: 1,
                                     style: TextStyle(
                                       fontSize: 16.0,
@@ -424,7 +629,7 @@ class _ProfileFormState extends State<ProfileForm> {
                                 Container(
                                   width: (screenWidth - 88.0) / 1.44,
                                   child: AutoSizeText(
-                                    profile.dni ?? '',
+                                    profile.dni ?? 'DNI',
                                     maxLines: 1,
                                     style: TextStyle(
                                       fontSize: 16.0,
@@ -452,7 +657,7 @@ class _ProfileFormState extends State<ProfileForm> {
                                 Container(
                                   width: (screenWidth - 88.0) / 1.44,
                                   child: AutoSizeText(
-                                    profile.email ?? '',
+                                    profile.email ?? 'Email',
                                     maxLines: 1,
                                     style: TextStyle(
                                       fontSize: 16.0,
@@ -480,7 +685,7 @@ class _ProfileFormState extends State<ProfileForm> {
                                 Container(
                                   width: (screenWidth - 88.0) / 1.44,
                                   child: AutoSizeText(
-                                    profile.birthday ?? '',
+                                    profile.birthday ?? 'Birthday',
                                     maxLines: 1,
                                     style: TextStyle(
                                       fontSize: 16.0,
@@ -508,7 +713,7 @@ class _ProfileFormState extends State<ProfileForm> {
                                 Container(
                                   width: (screenWidth - 88.0) / 1.44,
                                   child: AutoSizeText(
-                                    profile.address ?? '',
+                                    profile.address ?? 'Address',
                                     maxLines: 1,
                                     style: TextStyle(
                                       fontSize: 16.0,
