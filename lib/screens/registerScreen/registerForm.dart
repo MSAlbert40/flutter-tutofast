@@ -482,7 +482,8 @@ class _RegisterForm extends State<RegisterForm> {
                                             placeholder: 'Enter your Address',
                                             keyboardType: TextInputType.streetAddress,
                                             textFieldBloc: registerFormBloc.address
-                                          )
+                                          ),
+                                          SizedBox(height: 10),
                                         ])
                                       )
                                     ),
