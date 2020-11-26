@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_tutofast/dto/subcriptionResultDTO.dart';
 
@@ -16,6 +18,26 @@ class SubcriptionData {
       ).toList();
 
       return subcriptions;
+
+    } catch(e) {
+      print(e);
+      return null;
+    }
+  }
+
+  void postSubcription(int idSubcription) async {
+    try {
+      Dio dio = new Dio();
+      
+      String url = 'https://tutofast-api.herokuapp.com/api/subscriptions/userId/' + '61' + '/plan/' + idSubcription.toString();
+      
+      await dio.post(url,
+        options: Options(
+          headers: {
+            HttpHeaders.contentTypeHeader: 'application/json',
+          }
+        ),
+      );
 
     } catch(e) {
       print(e);
