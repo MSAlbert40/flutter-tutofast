@@ -8,7 +8,6 @@ import 'package:flutter_tutofast/screens/subcriptionScreen/subcriptionData.dart'
 import 'package:flutter_tutofast/widgets/buttons/mainButton.dart';
 
 import '../../constants/app_colors.dart';
-import '../../constants/app_colors.dart';
 import '../../widgets/buttons/microButton.dart';
 
 class SubcriptionForm extends StatefulWidget {
@@ -63,8 +62,7 @@ class _SubcriptionFormState extends State<SubcriptionForm> {
                     height: (((screenHeight / 1.304) - 50.0) / 1.125) / 1.09,
                     padding: EdgeInsets.symmetric(vertical: 12.0),
                     // color: AppColors.green,
-                    child: SingleChildScrollView(
-                      child: Column(children: [
+                    child: Column(children: [
                         Container(
                           height: ((((screenHeight / 1.304) - 50.0) / 1.125) / 1.09) / 1.15,
                           // color: AppColors.red,
@@ -84,44 +82,45 @@ class _SubcriptionFormState extends State<SubcriptionForm> {
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      (
-                                        Container(
-                                          width: screenWidth / 1.7,
-                                          height: ((((screenHeight / 1.304) - 50.0) / 1.125) / 1.09) / 1.15,
-                                          margin: EdgeInsets.only(right: 28.0),
-                                          decoration: BoxDecoration(
-                                            color: idSubcriptionSelected == item.id ? AppColors.cyan : AppColors.white,
-                                            borderRadius: BorderRadius.all(Radius.circular(15.0))
-                                          ),
-                                          child: Column(
-                                            mainAxisAlignment: MainAxisAlignment.end,
-                                            children: [
-                                              Container(
-                                                height: (((((screenHeight / 1.304) - 50.0) / 1.125) / 1.09) / 1.15) / 1.35,
-                                                // color: AppColors.red,
-                                                child: Column(children: [
-                                                  Container(
-                                                    width: screenWidth / 1.7,
-                                                    height: ((((((screenHeight / 1.304) - 50.0) / 1.125) / 1.09) / 1.15) / 1.35) / 3,
-                                                    padding: EdgeInsets.only(right: 15.0, left: 35.0, top: 17.0),
-                                                    // color: AppColors.green,
-                                                    child: Column(children: [
-                                                      Container(
-                                                        alignment: Alignment.centerLeft,
-                                                        child: AutoSizeText(
-                                                          'Credit',
-                                                          maxLines: 1,
-                                                          style: TextStyle(
-                                                            fontSize: 20.0,
-                                                            color: idSubcriptionSelected == item.id ? AppColors.white : AppColors.blue,
-                                                            fontFamily: AppFonts.centuryGothic,
-                                                            fontWeight: FontWeight.bold,
-                                                          )
+                                      Container(
+                                        width: screenWidth / 1.7,
+                                        height: ((((screenHeight / 1.304) - 50.0) / 1.125) / 1.09) / 1.15,
+                                        margin: EdgeInsets.only(right: 28.0),
+                                        decoration: BoxDecoration(
+                                          color: idSubcriptionSelected == item.id ? AppColors.cyan : AppColors.white,
+                                          borderRadius: BorderRadius.all(Radius.circular(15.0))
+                                        ),
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.end,
+                                          children: [
+                                            Container(
+                                              height: (((((screenHeight / 1.304) - 50.0) / 1.125) / 1.09) / 1.15) / 1.35,
+                                              // color: AppColors.red,
+                                              child: Column(children: [
+                                                Container(
+                                                  width: screenWidth / 1.7,
+                                                  height: ((((((screenHeight / 1.304) - 50.0) / 1.125) / 1.09) / 1.15) / 1.35) / 3,
+                                                  padding: EdgeInsets.only(right: 15.0, left: 35.0, top: 17.0),
+                                                  // color: AppColors.blue,
+                                                  child: Column(children: [
+                                                    Container(
+                                                      width: screenWidth / 1.7,
+                                                      alignment: Alignment.centerLeft,
+                                                      child: AutoSizeText(
+                                                        'Credit',
+                                                        maxLines: 1,
+                                                        style: TextStyle(
+                                                          fontSize: 20.0,
+                                                          color: idSubcriptionSelected == item.id ? AppColors.white : AppColors.blue,
+                                                          fontFamily: AppFonts.centuryGothic,
+                                                          fontWeight: FontWeight.bold,
                                                         )
-                                                      ),
-                                                      Container(
-                                                        alignment: Alignment.bottomLeft,
-                                                        child: AutoSizeText(
+                                                      )
+                                                    ),
+                                                    Container(
+                                                      width: screenWidth / 1.7,
+                                                      alignment: Alignment.bottomLeft,
+                                                      child: AutoSizeText(
                                                           item.description,
                                                           maxLines: 3,
                                                           style: TextStyle(
@@ -140,6 +139,7 @@ class _SubcriptionFormState extends State<SubcriptionForm> {
                                                     // color: AppColors.green,
                                                     child: Column(children: [
                                                       Container(
+                                                        width: screenWidth / 1.7,
                                                         alignment: Alignment.centerLeft,
                                                         child: AutoSizeText(
                                                           'No Ads',
@@ -153,6 +153,7 @@ class _SubcriptionFormState extends State<SubcriptionForm> {
                                                         )
                                                       ),
                                                       Container(
+                                                        width: screenWidth / 1.7,
                                                         alignment: Alignment.bottomLeft,
                                                         child: AutoSizeText(
                                                           'Banners and video advertising will be removed.',
@@ -221,8 +222,7 @@ class _SubcriptionFormState extends State<SubcriptionForm> {
                                                 ])
                                               )
                                           ])
-                                        )
-                                      ),
+                                      )
                                     ],
                                   ),
                                 )
@@ -232,7 +232,7 @@ class _SubcriptionFormState extends State<SubcriptionForm> {
                         ),
                         SizedBox(height: 8.0),
                         Container(
-                          height: ((((screenHeight / 1.304) - 50.0) / 1.125) / 1.09) / 14,
+                          height: ((((screenHeight / 1.304) - 50.0) / 1.125) / 1.09) / 17,
                           // color: AppColors.blue,
                           alignment: Alignment.center,
                           child: AutoSizeText(
@@ -246,7 +246,6 @@ class _SubcriptionFormState extends State<SubcriptionForm> {
                           )
                         )
                       ])
-                    )
                   ),
                   Container(
                     height: (((screenHeight / 1.304) - 50.0) / 1.125) / 12.5,

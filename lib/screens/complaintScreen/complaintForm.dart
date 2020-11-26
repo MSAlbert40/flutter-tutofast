@@ -9,6 +9,7 @@ import 'package:flutter_tutofast/screens/profileScreen/profileScreen.dart';
 import 'package:flutter_tutofast/widgets/buttons/mainButton.dart';
 import 'package:flutter_tutofast/widgets/buttons/microButton.dart';
 import 'package:flutter_tutofast/widgets/forms/textInput.dart';
+import 'package:hive/hive.dart';
 
 class ComplaintForm extends StatefulWidget {
   @override
@@ -16,24 +17,92 @@ class ComplaintForm extends StatefulWidget {
 }
 
 class _ComplaintFormState extends State<ComplaintForm> {
-  bool viewSelect = true;
+  Column viewSelect = Column();
 
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height - 54.0;
 
+    final _sessionbox = Hive.box('session');
+    final _isRole = _sessionbox.get('role') == 'ROLE_STUDENT';
+
     final selectUser = Column(children: [
       SizedBox(height: 25.0),
-      Container(
-        width: screenWidth,
-        height: screenHeight / 8,
-        padding: EdgeInsets.symmetric(horizontal: 18.0, vertical: 15.0),
-        decoration: BoxDecoration(
-          color: AppColors.blue,
-          borderRadius: BorderRadius.circular(12.0)
-        )
-      ),
+      Stack(children: [
+        Container(
+          width: screenWidth,
+          height: screenHeight / 7.5,
+          padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
+          decoration: BoxDecoration(
+            // color: AppColors.blue,
+            borderRadius: BorderRadius.circular(12.0),
+            image: DecorationImage(
+              alignment: Alignment.center,
+              fit: BoxFit.cover,
+              image: _isRole ? AssetImage('assets/images/backgrounds/BUT.jpg') : AssetImage('assets/images/backgrounds/BUS.jpg')
+            )
+          )
+        ),
+        Container(
+          width: screenWidth,
+          height: screenHeight / 7.5,
+          padding: EdgeInsets.only(top: 12.0, bottom: 12.0, left: 20.0),
+          decoration: BoxDecoration(
+            color: AppColors.dark.withOpacity(0.30),
+            borderRadius: BorderRadius.circular(12.0),
+          ),
+          child: Row(children: [
+            Container(
+              width: (screenWidth - 84.0) / 3.7,
+              height: screenHeight / 7.5,
+              decoration: BoxDecoration(
+                color: AppColors.white,
+                borderRadius: BorderRadius.circular(100.0),
+                image: DecorationImage(
+                  alignment: Alignment.center,
+                  fit: BoxFit.cover,
+                  image: _isRole ? AssetImage('assets/images/backgrounds/IUT.png') : AssetImage('assets/images/backgrounds/IUS.png')
+                )
+              )
+            ),
+            Container(
+              width: (screenWidth - 84.0) / 1.3,
+              height: screenHeight / 7.5,
+              // color: AppColors.green,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(height: 5.0),
+                  Container(
+                    child: AutoSizeText(
+                      'Pablo Gabriel',
+                      maxLines: 1,
+                      style: TextStyle(
+                        fontSize: 17.0,
+                        color: AppColors.white,
+                        fontFamily: AppFonts.centuryGothic,
+                        height: 1
+                      )
+                    )
+                  ),
+                  Container(
+                    child: AutoSizeText(
+                      'Mendez Jimenez',
+                      maxLines: 1,
+                      style: TextStyle(
+                        fontSize: 35.0,
+                        color: AppColors.white,
+                        fontFamily: AppFonts.bebasNeue,
+                        height: 1.1
+                      )
+                    )
+                  )
+              ])
+            )
+          ])
+        ),
+      ])
     ]);
 
     return BlocProvider(
@@ -116,14 +185,9 @@ class _ComplaintFormState extends State<ComplaintForm> {
                               child: Column(children: [
                                 SelectTypeComplaint(
                                   onPressed: (index){
-                                    if(index == 0){
-                                      viewSelect = true;
-                                      print(viewSelect);
-                                    }
-                                    else{
-                                      viewSelect = false;
-                                      print(viewSelect);
-                                    }
+                                    setState(() {
+                                      viewSelect = index == 0 ? selectUser : Column();
+                                    });
                                   }
                                 )
                               ])
@@ -189,7 +253,7 @@ class _ComplaintFormState extends State<ComplaintForm> {
                                       )
                                     ])
                                   ),
-                                  viewSelect ? selectUser : Column(),
+                                  viewSelect,
                                   SizedBox(height: 25.0),
                                   MicroButton(
                                     width: screenWidth,
