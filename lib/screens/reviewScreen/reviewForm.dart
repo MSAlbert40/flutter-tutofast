@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tutofast/constants/app_colors.dart';
 import 'package:flutter_tutofast/constants/app_fonts.dart';
 import 'package:flutter_tutofast/dto/profileResultDTO.dart';
+import 'package:flutter_tutofast/dto/reviewResultDTO.dart';
 import 'package:flutter_tutofast/screens/profileScreen/profileData.dart';
 import 'package:flutter_tutofast/screens/profileScreen/profileScreen.dart';
+import 'package:flutter_tutofast/screens/reviewScreen/reviewData.dart';
 import 'package:flutter_tutofast/widgets/buttons/microButton.dart';
 
 class ReviewForm extends StatefulWidget {
@@ -15,13 +17,18 @@ class ReviewForm extends StatefulWidget {
 class _ReviewFormState extends State<ReviewForm> {
   ProfileData profileData;
   ProfileResultDTO profile;
+  ReviewData reviewData;
+  ReviewResultDTO reviews;
 
   @override
   void initState() {
     profileData = ProfileData();
     profile = ProfileResultDTO();
+    reviewData = ReviewData();
+    reviews = ReviewResultDTO();
 
     loadProfile();
+    loadReview();
     super.initState();
   }
 
@@ -30,6 +37,13 @@ class _ReviewFormState extends State<ReviewForm> {
     setState(() {
       profile = result;
     });    
+  }
+
+  Future loadReview() async {
+    ReviewResultDTO result = await reviewData.getDataReview();
+    setState(() {
+      reviews = result;
+    });
   }
   @override
   Widget build(BuildContext context) {
@@ -207,6 +221,21 @@ class _ReviewFormState extends State<ReviewForm> {
                                           )
                                         )
                                       ),
+                                        Container(
+                                          width: screenWidth,
+                                          height: ((screenHeight / 3) - 30.0) / 4,
+                                          alignment: Alignment.centerLeft,
+                                          // color: AppColors.cyan,
+                                          child: AutoSizeText(
+                                            reviews.description ?? 'description',
+                                            maxLines: 1,
+                                            style: TextStyle(
+                                              fontSize: 30.0,
+                                              letterSpacing: -0.5,
+                                              fontFamily: AppFonts.centuryGothic,
+                                            )
+                                          )
+                                        )
                                     ])
                                   ),
                                   SizedBox(height: 25.0),
