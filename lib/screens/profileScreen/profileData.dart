@@ -1,10 +1,12 @@
 import 'dart:io';
 
+import 'package:flutter_tutofast/dto/coursesResultDTO.dart';
 import 'package:flutter_tutofast/dto/profileResultDTO.dart';
 import 'package:hive/hive.dart';
 import 'package:dio/dio.dart';
 
 class ProfileData{
+  List _courses;
 
   Future<ProfileResultDTO> getDataProfile() async {
     try {
@@ -25,9 +27,21 @@ class ProfileData{
       );
 
       ProfileResultDTO _response = ProfileResultDTO.fromJson(_profileDataResult.data);
+      _courses = _response.courses;
 
       return _response;
     } catch(e){
+      print(e);
+      return null;
+    }
+  }
+
+  Future<List> getDataCourses() async {
+    try {
+      List courses = _courses.map((value) => CoursesResultDTO.fromJson(value)).toList();
+
+      return courses;
+    } catch (e) {
       print(e);
       return null;
     }

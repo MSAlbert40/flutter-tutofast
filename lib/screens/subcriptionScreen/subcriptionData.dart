@@ -17,8 +17,9 @@ class SubcriptionData {
         (value) => SubcriptionResultDTO.fromJson(value)
       ).toList();
 
+      print(subcriptions);
+      
       return subcriptions;
-
     } catch(e) {
       print(e);
       return null;

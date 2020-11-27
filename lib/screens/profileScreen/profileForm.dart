@@ -18,11 +18,13 @@ class ProfileForm extends StatefulWidget {
 class _ProfileFormState extends State<ProfileForm> {
   ProfileData profileData;
   ProfileResultDTO profile;
+  List courses;
 
   @override
   void initState() {
     profileData = ProfileData();
     profile = ProfileResultDTO();
+    courses = List();
 
     loadProfile();
     super.initState();
@@ -32,6 +34,11 @@ class _ProfileFormState extends State<ProfileForm> {
     ProfileResultDTO result = await profileData.getDataProfile();
     setState(() {
       profile = result;
+    });    
+  
+    List view = await profileData.getDataCourses();
+    setState(() {
+      courses = view;
     });    
   }
 
@@ -263,9 +270,64 @@ class _ProfileFormState extends State<ProfileForm> {
       Container(
         width: screenWidth,
         height: screenHeight / 7.2,
+        padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 12.0),
         decoration: BoxDecoration(
           color: AppColors.white,
-          borderRadius: BorderRadius.circular(12.0)
+          borderRadius: BorderRadius.circular(12.0),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.silver,
+              blurRadius: 7,
+              offset: Offset(0, 3)
+            )
+          ]
+        ),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(children: [
+            for(var course in courses)
+            Container(
+              width: screenWidth / 4.6,
+              height: screenHeight / 7.2,
+              margin: EdgeInsets.only(right: 20.0),
+              decoration: BoxDecoration(
+                color: AppColors.white,
+                borderRadius: BorderRadius.all(Radius.circular(7.5)),
+                border: Border.all(
+                  color: AppColors.silver,
+                  width: 1
+                )
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Container(
+                    width: screenWidth / 4.6,
+                    height: (screenHeight / 7.2) / 2.2,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        alignment: Alignment.center,
+                        fit: BoxFit.contain,
+                        image: AssetImage('assets/images/icons/H0.png')
+                      )
+                    )
+                  ),
+                  Container(
+                    width: screenWidth / 4.6,
+                    height: (screenHeight / 7.2) / 5,
+                    child: AutoSizeText(
+                      course.name,
+                      maxLines: 1,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 17.0,
+                        fontFamily: AppFonts.bebasNeue
+                      )
+                    )
+                  )
+              ])
+            )
+          ])
         )
       )
     ]);
@@ -531,7 +593,14 @@ class _ProfileFormState extends State<ProfileForm> {
                         padding: EdgeInsets.symmetric(horizontal: 22.0, vertical: 15.0),
                         decoration: BoxDecoration(
                           color: AppColors.white,
-                          borderRadius: BorderRadius.circular(12.0)
+                          borderRadius: BorderRadius.circular(12.0),
+                          boxShadow: [
+                            BoxShadow(
+                              color: AppColors.silver,
+                              blurRadius: 7,
+                              offset: Offset(0, 3)
+                            )
+                          ]
                         ),
                         child: Column(children: [
                           Container(
