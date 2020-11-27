@@ -24,7 +24,7 @@ class MainScreen extends StatelessWidget {
               width: screenWidth,
               height: screenHeight,
               // color: AppColors.blue,
-              padding: EdgeInsets.symmetric(horizontal: 22.0, vertical: 25.0),
+              padding: EdgeInsets.only(left: 22.0, right: 22.0, top: 25.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -76,8 +76,8 @@ class MainScreen extends StatelessWidget {
                     ),
                     Container(
                       width: screenWidth,
-                      height: (screenHeight - 50.0) / 1.19,
-                      // color: AppColors.green
+                      height: (screenHeight - 50.0) / 1.17,
+                      // color: AppColors.green,
                       child: SingleChildScrollView(
                         child: Column(children: [
                           SizedBox(height: 2.0),
@@ -87,7 +87,14 @@ class MainScreen extends StatelessWidget {
                             padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 9.0),
                             decoration: BoxDecoration(
                               color: AppColors.white,
-                              borderRadius: BorderRadius.circular(12.0)
+                              borderRadius: BorderRadius.circular(12.0),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: AppColors.silver,
+                                  blurRadius: 7,
+                                  offset: Offset(0, 3)
+                                )
+                              ]
                             ),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.end,
