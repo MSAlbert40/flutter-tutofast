@@ -18,14 +18,14 @@ class _ReviewFormState extends State<ReviewForm> {
   ProfileData profileData;
   ProfileResultDTO profile;
   ReviewData reviewData;
-  ReviewResultDTO reviews;
+  List reviews;
 
   @override
   void initState() {
     profileData = ProfileData();
     profile = ProfileResultDTO();
     reviewData = ReviewData();
-    reviews = ReviewResultDTO();
+    reviews = List();
 
     loadProfile();
     loadReview();
@@ -40,11 +40,12 @@ class _ReviewFormState extends State<ReviewForm> {
   }
 
   Future loadReview() async {
-    ReviewResultDTO result = await reviewData.getDataReview();
+    List result = await reviewData.getDataReview();
     setState(() {
       reviews = result;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -221,12 +222,75 @@ class _ReviewFormState extends State<ReviewForm> {
                                           )
                                         )
                                       ),
-                                        Container(
-                                          width: screenWidth,
-                                          height: ((screenHeight / 3) - 30.0) / 4,
-                                          alignment: Alignment.centerLeft,
-                                          // color: AppColors.cyan,
-                                          child: AutoSizeText(
+                                      Container(
+                                        width: screenWidth,
+                                        //height: ((screenHeight / 3) - 30.0) / 4,
+                                        //alignment: Alignment.centerLeft,
+                                        // color: AppColors.cyan,
+                                          
+                                        child: SingleChildScrollView(
+                                          child: Column (
+                                            children: [
+                                              
+                                              for(var item in reviews)
+                                                Column(
+                                                  children : [
+                                                    Container(
+                                                      width: screenWidth,
+                                                      height: ((screenHeight / 3) - 30.0) / 12,
+                                                      alignment: Alignment.centerLeft,
+                                                      //color: AppColors.cyan,
+                                                      child: AutoSizeText(
+                                                        item.student.name + ' ' + item.student.lastName,
+                                                        maxLines: 1,
+                                                        style: TextStyle(
+                                                          fontSize: 1.0,
+                                                          letterSpacing: -0.5,
+                                                          fontFamily: AppFonts.centuryGothic,
+                                                        )
+                                                      )
+                                                    ),
+                                                    Container(
+                                                      width: screenWidth,
+                                                      height: ((screenHeight / 3) - 30.0) / 4,
+                                                      alignment: Alignment.centerLeft,
+                                                      //color: AppColors.cyan,
+                                                      child: AutoSizeText(
+                                                        item.description ?? 'description',
+                                                        maxLines: 1,
+                                                        style: TextStyle(
+                                                          fontSize: 1.0,
+                                                          letterSpacing: -0.5,
+                                                          fontFamily: AppFonts.centuryGothic,
+                                                        )
+                                                      )
+                                                    ),
+                                                    Container(
+                                                      width: screenWidth,
+                                                      height: ((screenHeight / 3) - 30.0) / 12,
+                                                      alignment: Alignment.centerLeft,
+                                                      //color: AppColors.lead,
+                                                      child: Row(
+                                                        children: [
+                                                          for(int i = 1; i <= 5; i++)
+                                                            Image(
+                                                              image: AssetImage(
+                                                                i <= item.stars ? 
+                                                                'assets/images/icons/EQ1.png' :
+                                                                'assets/images/icons/EE1.png'
+                                                              ),
+                                                            )
+                                                        ],
+                                                      )
+                                                    )
+                                                  ]
+                                                )
+                                            ],
+                                          )
+                                        )
+
+
+                                          /*child: AutoSizeText(
                                             reviews.description ?? 'description',
                                             maxLines: 1,
                                             style: TextStyle(
@@ -234,8 +298,12 @@ class _ReviewFormState extends State<ReviewForm> {
                                               letterSpacing: -0.5,
                                               fontFamily: AppFonts.centuryGothic,
                                             )
-                                          )
-                                        )
+                                          )*/
+
+
+
+
+                                      )
                                     ])
                                   ),
                                   SizedBox(height: 25.0),
