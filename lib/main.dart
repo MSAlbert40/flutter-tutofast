@@ -3,9 +3,9 @@ import 'package:flutter_tutofast/constants/app_colors.dart';
 import 'package:flutter_tutofast/constants/app_fonts.dart';
 import 'package:flutter_tutofast/screens/loginScreen/loginScreen.dart';
 import 'package:flutter_tutofast/screens/registerScreen/registerScreen.dart';
+import 'package:flutter_tutofast/screens/subcriptionScreen/subcriptionScreen.dart';
 import 'package:flutter_tutofast/screens/tabs/screen.dart';
 import 'package:flutter_tutofast/screens/tabs/screen_bindings.dart';
-import 'package:flutter_tutofast/widgets/appLoadingDialog.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 
 import 'constants/app_routes.dart';
@@ -49,6 +49,10 @@ class MyApp extends StatelessWidget {
               return GetPageRoute(
                   settings: settings,
                   page: () => const RegisterScreen());
+            case AppRoutes.subscription:
+              return GetPageRoute(
+                  settings: settings,
+                  page: () => const SubcriptionScreen());
             case AppRoutes.tabs:
               return GetPageRoute(
                   binding: TabsScreenBindings(),

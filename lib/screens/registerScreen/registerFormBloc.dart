@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:flutter_tutofast/constants/app_routes.dart';
 import 'package:flutter_tutofast/utils/formValidations.dart';
+import 'package:flutter_tutofast/widgets/appAlertDialog.dart';
 import 'package:flutter_tutofast/widgets/appLoadingDialog.dart';
 import 'package:get/get.dart';
 
@@ -92,8 +93,6 @@ class RegisterFormBloc extends FormBloc<String, String> {
         'address': address.value,
         'role': [role.value]
       };
-      print('request');
-      print(request);
 
       final _signupResult = await dio.post(
         'https://tutofast-api.herokuapp.com/api/auth/signup',
@@ -102,14 +101,20 @@ class RegisterFormBloc extends FormBloc<String, String> {
         }),
         data: jsonEncode(request)
       );
-      print('_signupResult');
-      print(_signupResult);
+
       AppLoadingDialog.hide();
-      print('hide');
-      Get.toNamed(AppRoutes.login);
+      AppAlertDialog.show(
+        contentText: 'Registro exitoso',
+      );
+
+      if(role.value == 'ROLE_STUDENT') Get.toNamed(AppRoutes.subscription);
+      else Get.toNamed(AppRoutes.login);
+
     } catch(e) {
-      print(e);
       AppLoadingDialog.hide();
+      AppAlertDialog.show(
+        contentText: 'Ocurrió un error al registrar su datos. Verifique e intente nuevamente por favor',
+      );
     }
   }
 }

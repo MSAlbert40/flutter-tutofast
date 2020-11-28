@@ -473,7 +473,7 @@ class _RegisterForm extends State<RegisterForm> {
                                           ]),
                                           SizedBox(height: 10),
                                           TextInput(
-                                            placeholder: 'Birth date (dd/mm/aa)',
+                                            placeholder: 'Birth date (aaaa-mm-dd)',
                                             keyboardType: TextInputType.datetime,
                                             textFieldBloc: registerFormBloc.birthDate
                                           ),
@@ -494,10 +494,10 @@ class _RegisterForm extends State<RegisterForm> {
                                         child: AutoSizeText('Register'),
                                         color: AppColors.blue,
                                         onPressed: () {
-                                          // context.bloc<RegisterFormBloc>().submit();
-                                          Navigator.of(context).push(MaterialPageRoute(
+                                          context.bloc<RegisterFormBloc>().submit();
+                                          /* Navigator.of(context).push(MaterialPageRoute(
                                             builder: (context) => mainRoute
-                                          ));
+                                          )); */
                                         }
                                       )
                                     )
