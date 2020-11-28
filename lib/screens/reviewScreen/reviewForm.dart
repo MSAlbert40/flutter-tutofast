@@ -318,7 +318,7 @@ class _ReviewFormState extends State<ReviewForm> {
                                         height: 15,
                                         // color: AppColors.red,
                                         child: AutoSizeText(
-                                          '3',
+                                          '1',
                                           maxLines: 1,
                                           style: TextStyle(
                                             fontSize: 16.0,
@@ -335,7 +335,7 @@ class _ReviewFormState extends State<ReviewForm> {
                                         child: LinearPercentIndicator(
                                           width: MediaQuery.of(context).size.width / 2.09,
                                           lineHeight: 8.0,
-                                          percent: ratings[4],
+                                          percent: ratings[1],
                                           progressColor: AppColors.white,
                                         ),
                                       )

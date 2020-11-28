@@ -18,14 +18,12 @@ class ProfileForm extends StatefulWidget {
 class _ProfileFormState extends State<ProfileForm> {
   ProfileData profileData;
   ProfileResultDTO profile;
-  ProfileResultDTO plans;
   List courses;
 
   @override
   void initState() {
     profileData = ProfileData();
     profile = ProfileResultDTO();
-    plans = ProfileResultDTO();
     courses = List();
 
     loadProfile();
@@ -36,12 +34,7 @@ class _ProfileFormState extends State<ProfileForm> {
     ProfileResultDTO result = await profileData.getDataProfile();
     setState(() {
       profile = result;
-    });   
-
-    ProfileResultDTO check = await profileData.getDataPlan();
-    setState(() {
-      plans = check;
-    });
+    });    
   
     List view = await profileData.getDataCourses();
     setState(() {
@@ -402,7 +395,7 @@ class _ProfileFormState extends State<ProfileForm> {
                   alignment: Alignment.centerRight,
                   padding: EdgeInsets.symmetric(horizontal: 10.0),
                   child: AutoSizeText(
-                    profile.name,
+                    'Free',
                     maxLines: 1,
                     style: TextStyle(
                       fontSize: 45.0,
