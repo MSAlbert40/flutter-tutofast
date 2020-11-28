@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flutter_tutofast/dto/profileResultDTO.dart';
 import 'package:flutter_tutofast/dto/reviewResultDTO.dart';
@@ -10,7 +8,7 @@ class ReviewData {
   ProfileData profileData;
   ProfileResultDTO profile;
 
-  Future<List> getDataReview() async {
+  Future<ReviewResultDTO> getDataReview() async {
     profileData = ProfileData();
     profile = ProfileResultDTO();
 
@@ -21,27 +19,21 @@ class ReviewData {
       final _sessionbox = Hive.box('session');
 
       String token = _sessionbox.get('token');
-      String teacherId = result.id.toString();
-      String url = 'https://tutofast-api.herokuapp.com/api/reviews/teacher/' + teacherId;
+      String username = result.id.toString();
+      String url = 'https://tutofast-api.herokuapp.com/api/reviews/teacher/' + username;
       String auth = 'Bearer ' + token;
       print('this is a teacherId');
-      print(teacherId);
+      print(username);
 
       final _reviewDataResult = await dio.get(url,
         options: Options(headers: {
           'Authorization': auth,
         }),
       );
-      //final jsonResponse = json.decode(_reviewDataResult.data);
-      final _reviewsMap = _reviewDataResult.data['content'];
 
-      print(_reviewsMap);
+      ReviewResultDTO _response = ReviewResultDTO.fromjson(_reviewDataResult.data);
 
-      List reviews = _reviewsMap.map(
-        (value) => ReviewResultDTO.fromJson(value)
-      ).toList();
-      
-      return reviews;
+      return _response;
     } catch (e) {
       print(e);
       return null;
