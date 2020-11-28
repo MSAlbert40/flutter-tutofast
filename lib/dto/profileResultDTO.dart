@@ -7,7 +7,7 @@ class ProfileResultDTO {
   final String birthday;
   final String address;
   final int creditHours;
-  final String averageStars;
+  final double averageStars;
   final List courses;
 
   ProfileResultDTO({
