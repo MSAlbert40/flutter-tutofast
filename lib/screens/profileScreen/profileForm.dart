@@ -42,6 +42,43 @@ class _ProfileFormState extends State<ProfileForm> {
     });    
   }
 
+  String selectImageCourse(String courseName) {
+
+    String image = '';
+
+    switch(courseName) {
+      case 'Spanish':
+        image = 'E0.png';
+        break;
+      case 'History':
+        image = 'H0.png';
+      break;
+      case 'Arithmetics':
+        image = 'AR0.png';
+      break;
+      case 'Geometry':
+        image = 'G0.png';
+      break;
+      case 'Geography':
+        image = 'GF0.png';
+      break;
+      case 'Algebra':
+        image = 'AR0.png';
+      break;
+      case 'Chemistry':
+        image = 'Q0.png';
+      break;
+      case 'Physics':
+        image = 'F0.png';
+      break;
+      case 'Biology':
+        image = 'B0.png';
+      break;
+    }
+
+    return image;
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -308,7 +345,7 @@ class _ProfileFormState extends State<ProfileForm> {
                       image: DecorationImage(
                         alignment: Alignment.center,
                         fit: BoxFit.contain,
-                        image: AssetImage('assets/images/icons/H0.png')
+                        image: AssetImage('assets/images/icons/' + selectImageCourse(course.name))
                       )
                     )
                   ),
