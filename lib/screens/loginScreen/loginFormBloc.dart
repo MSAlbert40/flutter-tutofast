@@ -46,9 +46,9 @@ class LoginFormBloc extends FormBloc<String, String> {
       );
       final _response = LoginResultDTO.fromJson(_loginResult.data);
 
-      //Directory directory = await getApplicationDocumentsDirectory();
+      Directory directory = await getApplicationDocumentsDirectory();
       // ignore: await_only_futures
-      //await Hive.init(directory.path);s
+      await Hive.init(directory.path);
       var _box = await Hive.openBox('session');
       _box.put('role', _response.roles);
       _box.put('token', _response.token);

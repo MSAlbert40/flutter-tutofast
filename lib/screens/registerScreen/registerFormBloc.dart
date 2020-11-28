@@ -118,7 +118,12 @@ class RegisterFormBloc extends FormBloc<String, String> {
 
         Get.toNamed(AppRoutes.subscription);
       }
-      else Get.toNamed(AppRoutes.login);
+      else {
+      AppAlertDialog.show(
+        contentText: 'Registro exitoso',
+      );
+      Get.toNamed(AppRoutes.login);
+      }
 
     } catch(e) {
       AppLoadingDialog.hide();
