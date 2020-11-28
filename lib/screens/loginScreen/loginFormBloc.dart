@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_tutofast/constants/app_routes.dart';
+import 'package:flutter_tutofast/widgets/appAlertDialog.dart';
 import 'package:flutter_tutofast/widgets/appLoadingDialog.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
@@ -52,7 +53,6 @@ class LoginFormBloc extends FormBloc<String, String> {
       _box.put('role', _response.roles);
       _box.put('token', _response.token);
       _box.put('username', _response.username);
-      print(_response.username);
 
       final _mainColor =
           _response.roles == 'ROLE_STUDENT' ? AppColors.green : AppColors.blue;
@@ -62,8 +62,10 @@ class LoginFormBloc extends FormBloc<String, String> {
       Get.offAllNamed(AppRoutes.tabs);
       AppLoadingDialog.hide();
     } catch (e) {
-      print(e);
       AppLoadingDialog.hide();
+      AppAlertDialog.show(
+        contentText: 'Ocurrió un error al validar su datos. Verifique e intente nuevamente por favor',
+      );
     }
   }
 }
