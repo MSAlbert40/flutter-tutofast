@@ -43,6 +43,81 @@ class _MainFormState extends State<MainForm> {
     });    
   }
 
+  String selectImageCourse(String courseName) {
+
+    String image = '';
+
+    switch(courseName) {
+      case 'Spanish':
+        image = 'E0.png';
+        break;
+      case 'History':
+        image = 'H0.png';
+      break;
+      case 'Arithmetics':
+        image = 'AR0.png';
+      break;
+      case 'Geometry':
+        image = 'G0.png';
+      break;
+      case 'Geography':
+        image = 'GF0.png';
+      break;
+      case 'Algebra':
+        image = 'AR0.png';
+      break;
+      case 'Chemistry':
+        image = 'Q0.png';
+      break;
+      case 'Physics':
+        image = 'F0.png';
+      break;
+      case 'Biology':
+        image = 'B0.png';
+      break;
+    }
+
+    return image;
+  }
+
+  String selectImage(String courseName) {
+
+    String image = '';
+
+    switch(courseName) {
+      case 'Spanish':
+        image = 'E1.png';
+        break;
+      case 'History':
+        image = 'H1.png';
+      break;
+      case 'Arithmetics':
+        image = 'AR1.png';
+      break;
+      case 'Geometry':
+        image = 'G1.png';
+      break;
+      case 'Geography':
+        image = 'GF1.png';
+      break;
+      case 'Algebra':
+        image = 'AR1.png';
+      break;
+      case 'Chemistry':
+        image = 'Q1.png';
+      break;
+      case 'Physics':
+        image = 'F1.png';
+      break;
+      case 'Biology':
+        image = 'B1.png';
+      break;
+    }
+
+    return image;
+  }
+
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -159,49 +234,57 @@ class _MainFormState extends State<MainForm> {
                     scrollDirection: Axis.horizontal,
                     child: Row(children: [
                       for(var course in courses)
-                      Container(
-                        width: screenWidth / 5,
-                        height: ((screenHeight / 5.8) - 30.0) / 1.2,
-                        margin: EdgeInsets.only(right: 20.0, top: 5.0),
-                        decoration: BoxDecoration(
-                          color: AppColors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(7.5)),
-                          border: Border.all(
-                            color: AppColors.silver,
-                            width: 1
-                          )
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Container(
-                              width: screenWidth / 5,
-                              height: (((screenHeight / 5.8) - 30.0) / 1.2) / 1.8,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  alignment: Alignment.center,
-                                  fit: BoxFit.contain,
-                                  image: AssetImage('assets/images/icons/Q0.png')
+                      MicroButton(
+                        onPressed: (){
+                          setState(() {
+                            idCourseSelect = course.id;
+                          });
+                          print(idCourseSelect);
+                        },
+                        child: Container(
+                          width: screenWidth / 5,
+                          height: ((screenHeight / 5.8) - 30.0) / 1.2,
+                          margin: EdgeInsets.only(right: 20.0, top: 5.0),
+                          decoration: BoxDecoration(
+                            color: idCourseSelect == course.id ? Theme.of(context).primaryColor : AppColors.white,
+                            borderRadius: BorderRadius.all(Radius.circular(7.5)),
+                            border: Border.all(
+                              color: AppColors.silver,
+                              width: 1
+                            )
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Container(
+                                width: screenWidth / 5,
+                                height: (((screenHeight / 5.8) - 30.0) / 1.2) / 1.8,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    alignment: Alignment.center,
+                                    fit: BoxFit.contain,
+                                    image: idCourseSelect == course.id ? AssetImage('assets/images/icons/' + selectImage(course.name)) : AssetImage('assets/images/icons/' + selectImageCourse(course.name))
+                                  )
+                                )
+                              ),
+                              Container(
+                                width: screenWidth / 5,
+                                height: (((screenHeight / 5.8) - 30.0) / 1.2) / 3.7,
+                                margin: EdgeInsets.symmetric(horizontal: 5.0),
+                                // color: AppColors.blue,
+                                child: AutoSizeText(
+                                  course.name,
+                                  maxLines: 1,
+                                  textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 17.0,
+                                      fontFamily: AppFonts.bebasNeue,
+                                      color: idCourseSelect == course.id ? AppColors.white : AppColors.dark,
+                                    )
                                 )
                               )
-                            ),
-                            Container(
-                              width: screenWidth / 5,
-                              height: (((screenHeight / 5.8) - 30.0) / 1.2) / 3.7,
-                              margin: EdgeInsets.symmetric(horizontal: 5.0),
-                              // color: AppColors.blue,
-                              child: AutoSizeText(
-                                course.name,
-                                maxLines: 1,
-                                textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontSize: 17.0,
-                                    fontFamily: AppFonts.bebasNeue,
-                                    color: AppColors.dark
-                                  )
-                              )
-                            )
-                        ])
+                          ])
+                        )
                       )
                     ])
                   )

@@ -8,6 +8,7 @@ import 'package:flutter_tutofast/screens/complaintScreen/selectTypeComplaint.dar
 import 'package:flutter_tutofast/screens/profileScreen/profileScreen.dart';
 import 'package:flutter_tutofast/widgets/buttons/mainButton.dart';
 import 'package:flutter_tutofast/widgets/buttons/microButton.dart';
+import 'package:flutter_tutofast/widgets/forms/textContainer.dart';
 import 'package:flutter_tutofast/widgets/forms/textInput.dart';
 import 'package:hive/hive.dart';
 
@@ -226,15 +227,10 @@ class _ComplaintFormState extends State<ComplaintForm> {
                                       children: [
                                       Container(
                                         height: (screenHeight / 4) / 1.85,
-                                        child: TextField(
-                                          decoration: InputDecoration(
-                                            hintText: 'Description',
-                                            border: OutlineInputBorder(
-                                              borderRadius: BorderRadius.circular(12.0),
-                                              borderSide: BorderSide(color: AppColors.red)
-                                            )
-                                          ),
-                                          maxLines: 10,
+                                        child: TextContainer(
+                                          placeholder: 'Decription',
+                                          keyboardType: TextInputType.multiline,
+                                          textFieldBloc: complaintFormBloc.description
                                         )
                                       ),
                                       Container(

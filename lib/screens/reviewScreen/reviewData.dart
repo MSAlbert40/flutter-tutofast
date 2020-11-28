@@ -34,7 +34,7 @@ class ReviewData {
       final _reviewsMap = _reviewDataResult.data['content'];
 
       List reviews = _reviewsMap.map(
-        (value) => ReviewResultDTO.fromjson(value)
+        (value) => ReviewResultDTO.fromJson(value)
       ).toList();
 
       return reviews;

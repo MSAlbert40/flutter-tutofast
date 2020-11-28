@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tutofast/constants/app_colors.dart';
 import 'package:flutter_tutofast/constants/app_fonts.dart';
 import 'package:flutter_tutofast/dto/profileResultDTO.dart';
-import 'package:flutter_tutofast/dto/reviewResultDTO.dart';
 import 'package:flutter_tutofast/screens/profileScreen/profileData.dart';
 import 'package:flutter_tutofast/screens/profileScreen/profileScreen.dart';
 import 'package:flutter_tutofast/screens/reviewScreen/reviewData.dart';
@@ -398,21 +397,6 @@ class _ReviewFormState extends State<ReviewForm> {
                                             ],
                                           )
                                         )
-
-
-                                          /*child: AutoSizeText(
-                                            reviews.description ?? 'description',
-                                            maxLines: 1,
-                                            style: TextStyle(
-                                              fontSize: 30.0,
-                                              letterSpacing: -0.5,
-                                              fontFamily: AppFonts.centuryGothic,
-                                            )
-                                          )*/
-
-
-
-
                                       )
                                     ])
                                   ),
