@@ -233,9 +233,9 @@ class _ComplaintFormState extends State<ComplaintForm> {
                                           textFieldBloc: complaintFormBloc.description
                                         )
                                       ),
-                                      Container(
+                                      /*Container(
                                         height: (screenHeight / 4) / 11,
-                                      ),
+                                      ),*/
                                       Container(
                                         height: (screenHeight / 4) / 6,
                                         child: MainButton(

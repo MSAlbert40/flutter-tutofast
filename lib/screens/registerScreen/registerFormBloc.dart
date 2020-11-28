@@ -8,6 +8,8 @@ import 'package:flutter_tutofast/utils/formValidations.dart';
 import 'package:flutter_tutofast/widgets/appAlertDialog.dart';
 import 'package:flutter_tutofast/widgets/appLoadingDialog.dart';
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart';
 
 class RegisterFormBloc extends FormBloc<String, String> {
   // ignore: close_sinks
@@ -103,11 +105,19 @@ class RegisterFormBloc extends FormBloc<String, String> {
       );
 
       AppLoadingDialog.hide();
-      AppAlertDialog.show(
+      /*AppAlertDialog.show(
         contentText: 'Registro exitoso',
-      );
+      );*/
 
-      if(role.value == 'ROLE_STUDENT') Get.toNamed(AppRoutes.subscription);
+      if(role.value == 'ROLE_STUDENT') {
+         Directory directory = await getApplicationDocumentsDirectory();
+        // ignore: await_only_futures
+        await Hive.init(directory.path);
+        var _tempBox = await Hive.openBox('user');
+        _tempBox.put('username', username.value);
+
+        Get.toNamed(AppRoutes.subscription);
+      }
       else Get.toNamed(AppRoutes.login);
 
     } catch(e) {

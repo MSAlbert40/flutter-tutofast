@@ -6,8 +6,10 @@ import 'package:flutter_tutofast/constants/app_fonts.dart';
 import 'package:flutter_tutofast/screens/registerScreen/registerFormBloc.dart';
 import 'package:flutter_tutofast/screens/subcriptionScreen/subcriptionData.dart';
 import 'package:flutter_tutofast/widgets/buttons/mainButton.dart';
+import 'package:get/get.dart';
 
 import '../../constants/app_colors.dart';
+import '../../constants/app_routes.dart';
 import '../../widgets/buttons/microButton.dart';
 
 class SubcriptionForm extends StatefulWidget {
@@ -251,11 +253,12 @@ class _SubcriptionFormState extends State<SubcriptionForm> {
                     height: (((screenHeight / 1.304) - 50.0) / 1.125) / 12.5,
                     // color: AppColors.blue,
                     child: MainButton(
-                      child: AutoSizeText('Add Card'),
+                      child: AutoSizeText('Finish'),
                       color: AppColors.blue,
                       onPressed: () {
                         //context.bloc<RegisterFormBloc>().submit();
                         subcriptionData.postSubcription(idSubcriptionSelected);
+                        Get.toNamed(AppRoutes.login);
                       }
                     )
                   )
