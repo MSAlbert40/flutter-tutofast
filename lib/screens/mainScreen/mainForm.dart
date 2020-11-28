@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:flutter_tutofast/constants/app_colors.dart';
 import 'package:flutter_tutofast/constants/app_fonts.dart';
-import 'package:flutter_tutofast/dto/mainResultDTO.dart';
 import 'package:flutter_tutofast/dto/profileResultDTO.dart';
 import 'package:flutter_tutofast/screens/mainScreen/mainData.dart';
 import 'package:flutter_tutofast/screens/mainScreen/mainFormBloc.dart';
@@ -20,7 +19,7 @@ class _MainFormState extends State<MainForm> {
   ProfileData profileData;
   ProfileResultDTO profile;
   MainData mainData;
-  MainResultDTO main;
+  List mains;
   List courses;
   int idCourseSelect;
 
@@ -29,7 +28,7 @@ class _MainFormState extends State<MainForm> {
     profileData = ProfileData();
     profile = ProfileResultDTO();
     mainData = MainData();
-    main = MainResultDTO();
+    mains = List();
     courses = List();
     idCourseSelect = 1;
 
@@ -51,6 +50,9 @@ class _MainFormState extends State<MainForm> {
 
   Future loadSession(int id) async {
     List check = await mainData.getDataMain(id);
+    setState(() {
+      mains = check;
+    });
   }
 
   String selectImageCourse(String courseName) {
@@ -305,6 +307,138 @@ class _MainFormState extends State<MainForm> {
                 )
               ])
             ),
+            SizedBox(height: 25.0),
+            Container(
+              width: screenWidth,
+              height: screenHeight / 5.8,
+              padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 12.0),
+              decoration: BoxDecoration(
+                color: AppColors.white,
+                borderRadius: BorderRadius.circular(12.0),
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors.silver,
+                    blurRadius: 7,
+                    offset: Offset(0, 3)
+                  )
+                ]
+              ),
+              child: Column(children: [
+                Container(
+                  width: screenWidth,
+                  height: (screenHeight / 5.8) / 4.5,
+                  // color: AppColors.cyan,
+                  child: AutoSizeText(
+                    'Results',
+                    maxLines: 1,
+                    style: TextStyle(
+                      fontFamily: AppFonts.bebasNeue,
+                      color: AppColors.blue,
+                      fontSize: 40.0
+                    )
+                  )
+                ),
+                Container(
+                  width: screenWidth,
+                  height: (screenHeight / 5.8) / 1.8,
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Column(children: [
+                      for(var session in mains)
+                      Container(
+                        width: screenWidth,
+                        height: (screenHeight / 5.8) / 1.8,
+                        margin: EdgeInsets.only(bottom: 10.0),
+                        child: Row(children: [
+                          Container(
+                            width: (screenWidth - 74.0) / 5,
+                            height: (screenHeight / 5.8) / 1.8,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 50.0,
+                                  height: 50.0,
+                                  decoration: BoxDecoration(
+                                    color: AppColors.green,
+                                    borderRadius: BorderRadius.circular(100.0)
+                                  )
+                                )
+                            ])
+                          ),
+                          Container(
+                            width: (screenWidth - 74.0) / 2.15,
+                            height: (screenHeight / 5.8) / 1.8,
+                            padding: EdgeInsets.symmetric(horizontal: 9.0),
+                            // color: AppColors.green,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  alignment: Alignment.centerLeft,
+                                  child: AutoSizeText(
+                                    session.student.name,
+                                    maxLines: 1,
+                                    style: TextStyle(
+                                      fontFamily: AppFonts.centuryGothic,
+                                      fontSize: 18.0
+                                    )
+                                  )
+                                ),
+                                Container(
+                                  alignment: Alignment.centerLeft,
+                                  child: AutoSizeText(
+                                    session.student.lastName,
+                                    maxLines: 1,
+                                    style: TextStyle(
+                                      fontFamily: AppFonts.centuryGothic,
+                                      fontSize: 15.0
+                                    )
+                                  )
+                                )
+                            ])
+                          ),
+                          Container(
+                            width: (screenWidth - 74.0) / 3,
+                            height: (screenHeight / 5.8) / 1.8,
+                            padding: EdgeInsets.symmetric(horizontal: 5.0),
+                            // color: AppColors.red,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  alignment: Alignment.centerRight,
+                                  child: AutoSizeText(
+                                    session.course.name,
+                                    maxLines: 1,
+                                    style: TextStyle(
+                                      fontFamily: AppFonts.centuryGothic,
+                                      fontWeight: FontWeight.bold,
+                                      color: AppColors.blue,
+                                      fontSize: 19.0
+                                    )
+                                  )
+                                ),
+                                Container(
+                                  alignment: Alignment.centerRight,
+                                  child: AutoSizeText(
+                                    '7:00',
+                                    maxLines: 1,
+                                    style: TextStyle(
+                                      fontFamily: AppFonts.centuryGothic,
+                                      fontSize: 15.0
+                                    )
+                                  )
+                                )
+                            ])
+                          )
+                        ])
+                      )
+                    ])
+                  )
+                )
+              ])
+            )
           ])
         );
       })

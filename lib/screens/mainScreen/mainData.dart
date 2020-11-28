@@ -9,13 +9,13 @@ class MainData {
       Dio dio = new Dio();
 
       String id = courseId.toString();
-      String url = 'https://tutofast-api.herokuapp.com/api/sessions/filtered?courseId=2';
-
+      String url = 'https://tutofast-api.herokuapp.com/api/sessions/filtered';
+      
       final _mainDataResult = await dio.get(url);
 
-      List mains = _mainDataResult.data.map(
-        (value) => MainResultDTO.fromJson(value)
-      ).toList();
+      List mains = _mainDataResult.data
+          .map((value) => MainResultDTO.fromJson(value))
+          .toList();
 
       print(id);
       print(_mainDataResult);
