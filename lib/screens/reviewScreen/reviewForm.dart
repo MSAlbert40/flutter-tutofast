@@ -8,6 +8,7 @@ import 'package:flutter_tutofast/screens/profileScreen/profileData.dart';
 import 'package:flutter_tutofast/screens/profileScreen/profileScreen.dart';
 import 'package:flutter_tutofast/screens/reviewScreen/reviewData.dart';
 import 'package:flutter_tutofast/widgets/buttons/microButton.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class ReviewForm extends StatefulWidget {
   @override
@@ -18,14 +19,16 @@ class _ReviewFormState extends State<ReviewForm> {
   ProfileData profileData;
   ProfileResultDTO profile;
   ReviewData reviewData;
-  ReviewResultDTO reviews;
+  List reviews;
+  List ratings;
 
   @override
   void initState() {
     profileData = ProfileData();
     profile = ProfileResultDTO();
     reviewData = ReviewData();
-    reviews = ReviewResultDTO();
+    reviews = List();
+    ratings = List();
 
     loadProfile();
     loadReview();
@@ -40,9 +43,11 @@ class _ReviewFormState extends State<ReviewForm> {
   }
 
   Future loadReview() async {
-    ReviewResultDTO result = await reviewData.getDataReview();
+    List resultReviews = await reviewData.getDataReview();
+    List resultRatings = await reviewData.getRatings(resultReviews);
     setState(() {
-      reviews = result;
+      reviews = resultReviews;
+      ratings = resultRatings;
     });
   }
   @override
@@ -138,7 +143,7 @@ class _ReviewFormState extends State<ReviewForm> {
                             Container(
                               width: screenWidth,
                               height: screenHeight / 6,
-                              padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
+                              padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
                               decoration: BoxDecoration(
                                 color: AppColors.blue,
                                 borderRadius: BorderRadius.circular(12.0)
@@ -157,10 +162,11 @@ class _ReviewFormState extends State<ReviewForm> {
                                       height: ((screenHeight / 6) - 30.0) / 1.43,
                                       alignment: Alignment.bottomRight,
                                       child: AutoSizeText(
-                                        profile.averageStars.toString() ?? '0.0',
+                                        //profile.averageStars.toString() ?? '0.0',
+                                        ratings[0].toStringAsFixed(1),
                                         maxLines: 1,
                                         style: TextStyle(
-                                          fontSize: 90.0,
+                                          fontSize: 70.0,
                                           color: AppColors.white,
                                           fontFamily: AppFonts.bebasNeue,
                                           height: 0.2
@@ -186,7 +192,111 @@ class _ReviewFormState extends State<ReviewForm> {
                                 ),
                                 Container(
                                   width: (screenWidth - 74.0) / 1.5,
-                                  color: AppColors.green,
+                                  color: AppColors.blue,
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        children: [
+                                          AutoSizeText(
+                                            '5',
+                                            maxLines: 1,
+                                            style: TextStyle(
+                                              fontSize: 16.0,
+                                              color: AppColors.white,
+                                              fontFamily: AppFonts.centuryGothic,
+                                              height: 1
+                                            )
+                                          ),
+                                          LinearPercentIndicator(
+                                            width: MediaQuery.of(context).size.width / 2,
+                                            lineHeight: 8.0,
+                                            percent: ratings[5],
+                                            progressColor: AppColors.white,
+                                          ),
+                                        ]
+                                      ),
+                                      Row(
+                                        children: [
+                                          AutoSizeText(
+                                            '4',
+                                            maxLines: 1,
+                                            style: TextStyle(
+                                              fontSize: 16.0,
+                                              color: AppColors.white,
+                                              fontFamily: AppFonts.centuryGothic,
+                                              height: 1
+                                            )
+                                          ),
+                                          LinearPercentIndicator(
+                                            width: MediaQuery.of(context).size.width / 2,
+                                            lineHeight: 8.0,
+                                            percent: ratings[4],
+                                            progressColor: AppColors.white,
+                                          ),
+                                        ]
+                                      ),
+                                      Row(
+                                        children: [
+                                          AutoSizeText(
+                                            '3',
+                                            maxLines: 1,
+                                            style: TextStyle(
+                                              fontSize: 16.0,
+                                              color: AppColors.white,
+                                              fontFamily: AppFonts.centuryGothic,
+                                              height: 1
+                                            )
+                                          ),
+                                          LinearPercentIndicator(
+                                            width: MediaQuery.of(context).size.width / 2,
+                                            lineHeight: 8.0,
+                                            percent: ratings[3],
+                                            progressColor: AppColors.white,
+                                          ),
+                                        ]
+                                      ),
+                                      Row(
+                                        children: [
+                                          AutoSizeText(
+                                            '2',
+                                            maxLines: 1,
+                                            style: TextStyle(
+                                              fontSize: 16.0,
+                                              color: AppColors.white,
+                                              fontFamily: AppFonts.centuryGothic,
+                                              height: 1
+                                            )
+                                          ),
+                                          LinearPercentIndicator(
+                                            width: MediaQuery.of(context).size.width / 2,
+                                            lineHeight: 8.0,
+                                            percent: ratings[2],
+                                            progressColor: AppColors.white,
+                                          ),
+                                        ]
+                                      ),
+                                      Row(
+                                        children: [
+                                          AutoSizeText(
+                                            '1',
+                                            maxLines: 1,
+                                            style: TextStyle(
+                                              fontSize: 16.0,
+                                              color: AppColors.white,
+                                              fontFamily: AppFonts.centuryGothic,
+                                              height: 1
+                                            )
+                                          ),
+                                          LinearPercentIndicator(
+                                            width: MediaQuery.of(context).size.width / 2,
+                                            lineHeight: 8.0,
+                                            percent: ratings[1],
+                                            progressColor: AppColors.white,
+                                          ),
+                                        ]
+                                      ),
+                                    ],
+                                  ),
                                 )
                               ])
                             ),
