@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:flutter_tutofast/constants/app_colors.dart';
 import 'package:flutter_tutofast/constants/app_fonts.dart';
+import 'package:flutter_tutofast/dto/mainResultDTO.dart';
 import 'package:flutter_tutofast/dto/profileResultDTO.dart';
+import 'package:flutter_tutofast/screens/mainScreen/mainData.dart';
 import 'package:flutter_tutofast/screens/mainScreen/mainFormBloc.dart';
 import 'package:flutter_tutofast/screens/profileScreen/profileData.dart';
 import 'package:flutter_tutofast/widgets/buttons/microButton.dart';
@@ -17,6 +19,8 @@ class MainForm extends StatefulWidget {
 class _MainFormState extends State<MainForm> {
   ProfileData profileData;
   ProfileResultDTO profile;
+  MainData mainData;
+  MainResultDTO main;
   List courses;
   int idCourseSelect;
 
@@ -24,6 +28,8 @@ class _MainFormState extends State<MainForm> {
   void initState() {
     profileData = ProfileData();
     profile = ProfileResultDTO();
+    mainData = MainData();
+    main = MainResultDTO();
     courses = List();
     idCourseSelect = 1;
 
@@ -40,7 +46,11 @@ class _MainFormState extends State<MainForm> {
     List view = await profileData.getDataCourses();
     setState(() {
       courses = view;
-    });    
+    });
+  }
+
+  Future loadSession(int id) async {
+    List check = await mainData.getDataMain(id);
   }
 
   String selectImageCourse(String courseName) {
@@ -165,6 +175,10 @@ class _MainFormState extends State<MainForm> {
                       fontFamily: AppFonts.centuryGothic
                     )
                   ),
+                  onPressed: (){
+                    loadSession(idCourseSelect);
+                    print(idCourseSelect);
+                  }
                 ),
                 Container(
                   height: ((screenHeight / 3.4) - 30.0) / 11,
