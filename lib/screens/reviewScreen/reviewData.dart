@@ -8,7 +8,7 @@ class ReviewData {
   ProfileData profileData;
   ProfileResultDTO profile;
 
-  Future<ReviewResultDTO> getDataReview() async {
+  Future<List> getDataReview() async {
     profileData = ProfileData();
     profile = ProfileResultDTO();
 
@@ -19,11 +19,11 @@ class ReviewData {
       final _sessionbox = Hive.box('session');
 
       String token = _sessionbox.get('token');
-      String username = result.id.toString();
-      String url = 'https://tutofast-api.herokuapp.com/api/reviews/teacher/' + username;
+      String teacherId = result.id.toString();
+      String url = 'https://tutofast-api.herokuapp.com/api/reviews/teacher/' + teacherId;
       String auth = 'Bearer ' + token;
       print('this is a teacherId');
-      print(username);
+      print(teacherId);
 
       final _reviewDataResult = await dio.get(url,
         options: Options(headers: {
@@ -34,7 +34,7 @@ class ReviewData {
       final _reviewsMap = _reviewDataResult.data['content'];
 
       List reviews = _reviewsMap.map(
-        (value) => ReviewResultDTO.fromJson(value)
+        (value) => ReviewResultDTO.fromjson(value)
       ).toList();
 
       return reviews;
