@@ -1,3 +1,5 @@
+import 'package:flutter_tutofast/dto/subcriptionResultDTO.dart';
+
 class ProfileResultDTO {
   final int id;
   final String name;
@@ -9,6 +11,7 @@ class ProfileResultDTO {
   final int creditHours;
   final double averageStars;
   final List courses;
+  final SubcriptionResultDTO plan;
 
   ProfileResultDTO({
       this.id,
@@ -20,7 +23,8 @@ class ProfileResultDTO {
       this.address,
       this.creditHours,
       this.averageStars,
-      this.courses
+      this.courses,
+      this.plan
   });
 
   factory ProfileResultDTO.fromJson(Map<String, dynamic> json) {
@@ -34,7 +38,8 @@ class ProfileResultDTO {
       address: json['address'],
       creditHours: json['creditHours'],
       averageStars: json['averageStars'],
-      courses: json['courses']
+      courses: json['courses'],
+      plan: SubcriptionResultDTO.fromJson(json['plan'])
     );
   }
 }
